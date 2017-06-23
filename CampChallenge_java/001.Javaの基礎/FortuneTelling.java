@@ -11,7 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.Date;
 import java.util.Random;
+import javax.servlet.RequestDispatcher;
+import org.camp.servlet.ResultData;
+
 /**
  *
  * @author guest1Day
@@ -27,11 +32,13 @@ public class FortuneTelling extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            final String result = "/WEB-INF/jsp/FortuneTellingResult.jsp";
             String luckList[] = {"大吉","中吉","小吉","吉","半吉","末小吉","凶","小凶","半凶","末凶","大凶"};
             
             Random rand = new Random();
@@ -81,11 +88,22 @@ public class FortuneTelling extends HttpServlet {
             
             }
             */
+
+            //日付を取得
+            ResultData data = new ResultData();
+            //日付をセット
+            data.setD(new Date());
+            //占い結果をセット
+            data.setLuck(luckList[index]);
+            request.setAttribute("DATA", data);
+
             
-           
+            RequestDispatcher rd = request.getRequestDispatcher(result);
+            rd.forward(request, response);
+
+    
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
