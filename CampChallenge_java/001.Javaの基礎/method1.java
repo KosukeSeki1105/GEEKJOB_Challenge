@@ -28,21 +28,32 @@ public class method1 extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    void myprofile(PrintWriter pw){
+    boolean myprofile(PrintWriter pw){
         pw.print("私の名前は関です。<br>");
         pw.print("生年月日は平成5年11月5日です。<br>");
         pw.print("宜しくお願いします。<br>");
+            return true;
+        
     }
+    
+     
+     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           
-            for(int i=0; i<10; i++){
-                myprofile(out); 
+             
+            if(myprofile(out)){
+                out.print("この処理は正しく実行できました");
+            }
+            else{
+                out.print("この処理は正しく実行できませんでした");
+            }
+            
+                
+            
         }
-    }
     }
     
 
