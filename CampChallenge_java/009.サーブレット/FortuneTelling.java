@@ -87,21 +87,7 @@ public class FortuneTelling extends HttpServlet {
                     
             
             }
-            */
-
-            //日付を取得
-            ResultData data = new ResultData();
-            //日付をセット
-            data.setD(new Date());
-            //占い結果をセット
-            data.setLuck(luckList[index]);
-            request.setAttribute("DATA", data);
-
-            
-            RequestDispatcher rd = request.getRequestDispatcher(result);
-            rd.forward(request, response);
-
-    
+           */
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
