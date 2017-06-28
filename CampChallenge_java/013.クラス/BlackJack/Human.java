@@ -4,11 +4,18 @@
  * and open the template in the editor.
  */
 package BlackJack;
+import java.util.ArrayList;
 
 /**
  *
  * @author guest1Day
  */
-public class Human {
-    
-}
+abstract class Human {
+    abstract public int open();
+    abstract public void setCard(ArrayList<Integer> set);
+    abstract public boolean checkSum();
+    ArrayList <Integer> myCards = new ArrayList<Integer>();
+
+
+}   
+
