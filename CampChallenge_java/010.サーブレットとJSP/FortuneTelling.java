@@ -44,66 +44,20 @@ public class FortuneTelling extends HttpServlet {
             Random rand = new Random();
             Integer index = rand.nextInt(luckList.length);
             
-            out.print("あなたの今日の運勢は・・・");
+           
             
-            out.print(luckList[index]);
-            
-            /*
-            
-            switch(index){
-                case 1:
-                    out.print("大吉！！！");
-                    break;
-                case 2:
-                    out.print("中吉！");
-                    break;
-                case 3:
-                    out.print("小吉！");
-                    break;
-                case 4:
-                    out.print("吉！");
-                    break;
-                case 5:
-                    out.print("半吉！");
-                    break;
-                case 6:
-                    out.print("末小吉！");
-                    break;
-                case 7:
-                    out.print("凶！");
-                    break;
-                case 8:
-                    out.print("小凶！");
-                    break;
-                case 9:
-                    out.print("半凶！");
-                    break;
-                case 10:
-                    out.print("末凶！");
-                    break;
-                case 11:
-                    out.print("大凶！");
-                    break;
-                    
-            
-            }
-            */
-
-            //日付を取得
-            ResultData data = new ResultData();
-            //日付をセット
-            data.setD(new Date());
-            //占い結果をセット
-            data.setLuck(luckList[index]);
-            request.setAttribute("DATA", data);
-
-            
-            RequestDispatcher rd = request.getRequestDispatcher(result);
-            rd.forward(request, response);
-
+    
+    ResultData data = new ResultData();
+    data.setD(new Date());
+    data.setLuck(luckList[index]);
+    request.setAttribute("DATA",data);
+    
+    RequestDispatcher rd = request.getRequestDispatcher(result);
+    rd.forward(request, response);
     
         }
     }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
