@@ -70,22 +70,7 @@ import java.util.Random;
 }
 
                
-    public static void main(String[] args){
-        Dealer A = new Dealer();
-        ArrayList<Integer> mycards = A.deal();
-        A.open();
-        
-        ArrayList<Integer> set = A.hit();
-        
-       
-        if(A.checkSum()){
-            A.setCard(set);
-            A.open();   
-        }else{
-            
-        }
-       
-    }
+   
 }
 
         
