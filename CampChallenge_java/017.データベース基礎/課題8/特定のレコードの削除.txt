@@ -1,0 +1,2 @@
+﻿DELETE FROM profiles WHERE birhday = '2000-12-24';
+SELECT * FROM profiles;
