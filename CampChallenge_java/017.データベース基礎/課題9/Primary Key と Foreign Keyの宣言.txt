@@ -1,0 +1,29 @@
+﻿create table department(departmentID int not null primary key, departmentName varchar(255));
+
+create table station(stationID int not null primary key, stationName varchar(255));
+
+create table user(userID int, name varchar(255), tell varchar(255), age int, birthday date,
+departmentID int, foreign key(departmentID) references department(departmentID),
+stationID int, foreign key(stationID) references station(stationID)
+) engine=InnoDB;
+
+insert into department values(1, '開発部');
+insert into department values(2, '営業部');
+insert into department values(3, '総務部');
+
+insert into station values(1, '九段下');
+insert into station values(2, '永田町');
+insert into station values(3, '渋谷');
+insert into station values(4, '神保町');
+insert into station values(5, '上井草');
+
+
+insert into user values(1, '田中 実', '012-345-6789', 30, '1994-02-01', 3, 1);
+insert into user values(2, '鈴木 茂', '090-1122-3344', 37, '1987-08-12', 3, 4);
+insert into user values(3, '鈴木 実', '080-5566-7788', 24, '2000-12-24', 2, 5);
+insert into user values(4, '佐藤 清', '012-0987-6543', 19, '2005-08-01', 1, 5);
+insert into user values(5, '高橋 清', '090-9900-1234', 24, '2000-12-24', 3, 5);
+
+select * from user;
+select * from department;
+select * from station;
