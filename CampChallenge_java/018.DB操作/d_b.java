@@ -31,16 +31,39 @@ public class d_b extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             Connection conn = null;
+            PreparedStatement db_st = null;
+            ResultSet db_data = null;
             String url = "jdbc:mysql://localhost/Challenge_db";
             String user = "SEKI";
             String password = "SEKIKOSUKE";
             
             try{
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                out.println("ドライバのロードに成功しました<br>");
+                //out.println("ドライバのロードに成功しました<br>");
                 
                 conn = DriverManager.getConnection(url, user, password);
-                out.println("データベース接続に成功しました<br>");
+                //out.println("データベース接続に成功しました<br>");
+                
+                db_st = conn.prepareStatement("insert into profiles values(6, '山田 太郎', '090-0000-1111', 23, '1999-01-01')");
+                int num = db_st.executeUpdate();
+                
+                db_st = conn.prepareStatement("select * from profiles");
+                db_data = db_st.executeQuery();
+                
+
+                while(db_data.next()){
+                    int pfID = db_data.getInt("profilesID");
+                    String name = db_data.getString("name");
+                    String tell = db_data.getString("tell");
+                    int age = db_data.getInt("age");
+                    String bdy = db_data.getString("birthday");
+                    out.println("プロフィールID：" + pfID+ "名前：" + name + "電話番号：" + tell + "年齢：" + age + "生年月日：" + bdy +"<br>");
+                    
+                }
+                db_data.close();
+                db_st.close();
+                conn.close();
+                
             }catch(ClassNotFoundException e){
                 out.println("ClassNotFoundException:" + e.getMessage());
             }catch(SQLException e){
