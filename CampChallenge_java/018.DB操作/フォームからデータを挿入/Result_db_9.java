@@ -90,13 +90,10 @@ public class Result_db_9 extends HttpServlet {
                 db_data = db_st.executeQuery();
                 
                 //登録データを表示
-                //while(db_data.next()){
-                db_data.next();
-                    printData(db_data, out);
                 
+                db_data.next();
+                printData(db_data, out);
                 out.print("追加されました。");
-                //printData(db_data, out);
-                //out.print("追加されました。");
                 
                 db_data.close();
                 db_st.close();
