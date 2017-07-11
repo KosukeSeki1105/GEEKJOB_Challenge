@@ -79,12 +79,12 @@ public class Result_db_10 extends HttpServlet {
                 db_st = db_con.prepareStatement("select * from profiles");
                 db_data = db_st.executeQuery();
                 
-                //削除するデータを表示
+                //削除後のデータを表示
                 while(db_data.next()){
                     printData(db_data, out);
                     out.print("<br>"); 
                 }
-                out.print("ID：" + ID +"は削除しました。" + "<br>");
+                out.print("ID：" + ID + "は削除しました。" + "<br>");
                 
                 db_data.close();
                 db_st.close();
