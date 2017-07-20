@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import jums.UserDataBeans;
+import java.util.HashMap;
 
 /**
  * insertconfirm.jspと対応するサーブレット
@@ -44,13 +45,23 @@ public class InsertConfirm extends HttpServlet {
              udb.setType(request);
              udb.setTell(request);
              udb.setComment(request);
-             udb.setType(request);
-             udb.setTell(request);
-             udb.setComment(request);
-            
+                                     
              
              //UserDataBeansをセッションに格納
              session.setAttribute("udb", udb);
+             
+             
+             //未入力フォームがあった場合はHashMapに格納
+             HashMap<Integer, String> eMsg = new HashMap<Integer, String>();
+             if(udb.getName().equals("")){ eMsg.put(1, "名前"); }
+             if(udb.getYear1().equals("")){ eMsg.put(2, "年"); }
+             if(udb.getMonth1().equals("")){ eMsg.put(3, "月"); }
+             if(udb.getDay1().equals("")){ eMsg.put(4, "日"); }
+             if(udb.getType().equals("")){ eMsg.put(5, "種別"); }
+             if(udb.getTell().equals("")){ eMsg.put(6, "電話番号"); }
+             if(udb.getComment().equals("")){ eMsg.put(7, "自己紹介"); }
+            
+             session.setAttribute("eMsg", eMsg);
              
              
 //            //フォームからの入力を取得

@@ -16,7 +16,7 @@
     <body>
     <form action="insertconfirm" method="POST">
         名前:
-        <input type="text" name="name" value="<%if(udb != null){%><%= udb.getName()%><%}%>">
+        <input type="text" name="name" value="<%if(udb != null){ %><%= udb.getName()%><% } %>">
         <br><br>
 
         生年月日:　
@@ -24,39 +24,39 @@
             <option value="">----</option>
             <%
             for(int i=1950; i<=2010; i++){ %>
-            <option value="<%=i%>" <%if(i == udb.getYear()){%> selected <%}%>> <%=i%> </option>
+            <option value="<%=i%>"<%if(udb != null && i == udb.getYear()){ %> <%= udb.getYear()%> selected <% } %>><%=i%> </option>
             <% } %>
         </select>年
         <select name="month">
             <option value="">--</option>
             <%
             for(int i = 1; i<=12; i++){ %>
-            <option value="<%=i%>"><%=i%></option>
+            <option value="<%=i%>"<%if(udb != null && i == udb.getMonth()){ %><%= udb.getMonth()%> selected <% } %>><%=i%></option>
             <% } %>
         </select>月
         <select name="day">
             <option value="">--</option>
             <%
             for(int i = 1; i<=31; i++){ %>
-            <option value="<%=i%>"><%=i%></option>
+            <option value="<%=i%>"<%if(udb != null && i == udb.getDay()){ %><%= udb.getDay()%> selected <% } %>><%=i%></option>
             <% } %>
         </select>日
         <br><br>
 
         種別:
         <br>
-        <input type="radio" name="type" value="1"　checked>エンジニア<br>
-        <input type="radio" name="type" value="2">営業<br>
-        <input type="radio" name="type" value="3">その他<br>
+        <input type="radio" name="type" value="1" <%if(udb != null && udb.getType().equals("1")){ %> checked <% } %>>エンジニア<br>
+        <input type="radio" name="type" value="2" <%if(udb != null && udb.getType().equals("2")){ %> checked <% } %>>営業<br>
+        <input type="radio" name="type" value="3" <%if(udb != null && udb.getType().equals("3")){ %> checked <% } %>>その他<br>
         <br>
 
         電話番号:
-        <input type="text" name="tell" value="">
+        <input type="text" name="tell" value="<%if(udb != null){ %><%= udb.getTell()%><% } %>">
         <br><br>
 
         自己紹介文
         <br>
-        <textarea name="comment" rows=10 cols=50 style="resize:none" wrap="hard"></textarea><br><br>
+        <textarea name="comment" rows=10 cols=50 style="resize:none" wrap="hard"><% if(udb != null){ %><%= udb.getComment()%><% } %></textarea><br><br>
         
         <input type="hidden" name="ac"  value="<%= hs.getAttribute("ac")%>">
         <input type="submit" name="btnSubmit" value="確認画面へ">

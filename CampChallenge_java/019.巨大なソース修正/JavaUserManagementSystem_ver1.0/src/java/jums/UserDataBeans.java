@@ -5,6 +5,13 @@
  */
 package jums;
 
+//JavaBeansの必要条件
+//１．publicで引数なしのコンストラクタ(初期化処理)を持つ
+//２．フィールドは隠匿されていること
+//３．フィールドは命令規則に沿ったメソッドが用意されている(getter/setterを持つ)
+//４．シリアライズ可能であること
+
+
 import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,19 +20,24 @@ import javax.servlet.http.HttpServletRequest;
  * @author guest1Day
  */
 
-//オブジェクトを保存・復元できるように直列化可能にする
+//UserDataBeansクラスにSerializableを実装
 public class UserDataBeans implements Serializable{
     
-    //インスタンス変数
-    private String name  = "";
-    private String year  = "";
-    private String month = "";
-    private String day   = "";
-    private String type  = "";
-    private String tell  = ""; 
+    //publicで引数なしのコンストラクタを作成
+    public UserDataBeans(){}
+    
+    
+    //フィールド作成
+    private String name     = "";
+    private String year     = "";
+    private String month    = "";
+    private String day      = "";
+    private String type     = "";
+    private String tell     = ""; 
     private String comment  = "";
     
-    //フォームから受け取ったデータを格納
+    
+    //setter(フォームから受け取ったデータを格納)
     //名前
     public void setName(HttpServletRequest request){
         if(!request.getParameter("name").equals("")){
@@ -56,7 +68,7 @@ public class UserDataBeans implements Serializable{
         
     //種別
     public void setType(HttpServletRequest request){
-        if(!request.getParameter("type").equals("")){
+        if(request.getParameter("type") != null){
             this.type = request.getParameter("type");
         }
     }    
@@ -76,7 +88,9 @@ public class UserDataBeans implements Serializable{
         
     }
         
-    //格納したデータを取り出す
+    
+    //getter(格納したデータを取り出す)
+    //年月日はgetterを2つ用意
     //名前
     public String getName(){
         return name;
@@ -84,17 +98,38 @@ public class UserDataBeans implements Serializable{
     
     //年
     public int getYear(){
-        return Integer.parseInt(year);
+        if(!year.equals("")){
+            return Integer.parseInt(year);
+        }else{
+            return 0;
+        }
+    }
+    public String getYear1(){
+        return year;
     }
     
     //月
     public int getMonth(){
-        return Integer.parseInt(month);
+        if(!month.equals("")){
+            return Integer.parseInt(month);
+        }else{
+            return 0;
+        }
+    }
+    public String getMonth1(){
+        return month;
     }
     
     //日
     public int getDay(){
-        return Integer.parseInt(day);
+        if(!day.equals("")){
+            return Integer.parseInt(day);            
+        }else{
+            return 0;
+        }
+    }
+    public String getDay1(){
+        return day;
     }
     
     //種別

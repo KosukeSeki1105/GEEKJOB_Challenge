@@ -64,9 +64,9 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <form action=\"insertconfirm\" method=\"POST\">\n");
       out.write("        名前:\n");
       out.write("        <input type=\"text\" name=\"name\" value=\"");
-if(udb != null){
+if(udb != null){ 
       out.print( udb.getName());
-}
+ } 
       out.write("\">\n");
       out.write("        <br><br>\n");
       out.write("\n");
@@ -80,12 +80,12 @@ if(udb != null){
       out.write("            <option value=\"");
       out.print(i);
       out.write('"');
+if(udb != null && i == udb.getYear()){ 
       out.write(' ');
-if(i == udb.getYear()){
+      out.print( udb.getYear());
       out.write(" selected ");
-}
+ } 
       out.write('>');
-      out.write(' ');
       out.print(i);
       out.write(" </option>\n");
       out.write("            ");
@@ -101,6 +101,10 @@ if(i == udb.getYear()){
       out.write("            <option value=\"");
       out.print(i);
       out.write('"');
+if(udb != null && i == udb.getMonth()){ 
+      out.print( udb.getMonth());
+      out.write(" selected ");
+ } 
       out.write('>');
       out.print(i);
       out.write("</option>\n");
@@ -117,6 +121,10 @@ if(i == udb.getYear()){
       out.write("            <option value=\"");
       out.print(i);
       out.write('"');
+if(udb != null && i == udb.getDay()){ 
+      out.print( udb.getDay());
+      out.write(" selected ");
+ } 
       out.write('>');
       out.print(i);
       out.write("</option>\n");
@@ -128,18 +136,34 @@ if(i == udb.getYear()){
       out.write("\n");
       out.write("        種別:\n");
       out.write("        <br>\n");
-      out.write("        <input type=\"radio\" name=\"type\" value=\"1\"　checked>エンジニア<br>\n");
-      out.write("        <input type=\"radio\" name=\"type\" value=\"2\">営業<br>\n");
-      out.write("        <input type=\"radio\" name=\"type\" value=\"3\">その他<br>\n");
+      out.write("        <input type=\"radio\" name=\"type\" value=\"1\" ");
+if(udb != null && udb.getType().equals("1")){ 
+      out.write(" checked ");
+ } 
+      out.write(">エンジニア<br>\n");
+      out.write("        <input type=\"radio\" name=\"type\" value=\"2\" ");
+if(udb != null && udb.getType().equals("2")){ 
+      out.write(" checked ");
+ } 
+      out.write(">営業<br>\n");
+      out.write("        <input type=\"radio\" name=\"type\" value=\"3\" ");
+if(udb != null && udb.getType().equals("3")){ 
+      out.write(" checked ");
+ } 
+      out.write(">その他<br>\n");
       out.write("        <br>\n");
       out.write("\n");
       out.write("        電話番号:\n");
-      out.write("        <input type=\"text\" name=\"tell\" value=\"\">\n");
+      out.write("        <input type=\"text\" name=\"tell\" value=\"");
+if(udb != null){ 
+      out.print( udb.getTell());
+ } 
+      out.write("\">\n");
       out.write("        <br><br>\n");
       out.write("\n");
       out.write("        自己紹介文\n");
       out.write("        <br>\n");
-      out.write("        <textarea name=\"comment\" rows=10 cols=50 style=\"resize:none\" wrap=\"hard\"></textarea><br><br>\n");
+      out.write("        <textarea name=\"comment\" rows=10 cols=50 style=\"resize:none\" wrap=\"hard\">kokoko</textarea><br><br>\n");
       out.write("        \n");
       out.write("        <input type=\"hidden\" name=\"ac\"  value=\"");
       out.print( hs.getAttribute("ac"));

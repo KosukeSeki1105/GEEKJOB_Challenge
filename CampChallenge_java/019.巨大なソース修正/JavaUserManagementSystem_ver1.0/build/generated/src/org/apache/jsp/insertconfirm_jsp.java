@@ -5,6 +5,9 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import javax.servlet.http.HttpSession;
 import jums.JumsHelper;
+import jums.UserDataBeans;
+import jums.InsertConfirm;
+import java.util.*;
 
 public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -43,10 +46,15 @@ public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBa
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
-      out.write('\n');
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
 
     HttpSession hs = request.getSession();
+    UserDataBeans udb = (UserDataBeans)hs.getAttribute("udb");
+    HashMap<Integer, String> eMsg = (HashMap<Integer, String>)hs.getAttribute("eMsg");
 
       out.write("\n");
       out.write("\n");
@@ -57,24 +65,25 @@ public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <title>JUMS登録確認画面</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("    \n");
       out.write("    ");
- if(!hs.getAttribute("name").equals("")){ 
+ if(eMsg.size() != 0){ 
       out.write("\n");
       out.write("        <h1>登録確認</h1>\n");
       out.write("        名前:");
-      out.print( hs.getAttribute("name"));
+      out.print( udb.getName());
       out.write("<br>\n");
       out.write("        生年月日:");
-      out.print( hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日");
+      out.print( udb.getYear() + "年" + udb.getMonth() + "月" + udb.getDay() + "日");
       out.write("<br>\n");
       out.write("        種別:");
-      out.print( hs.getAttribute("type"));
+      out.print( udb.getType());
       out.write("<br>\n");
       out.write("        電話番号:");
-      out.print( hs.getAttribute("tell"));
+      out.print( udb.getTell());
       out.write("<br>\n");
       out.write("        自己紹介:");
-      out.print( hs.getAttribute("comment"));
+      out.print( udb.getComment());
       out.write("<br>\n");
       out.write("        上記の内容で登録します。よろしいですか？\n");
       out.write("        <form action=\"insertresult\" method=\"POST\">\n");
@@ -86,7 +95,14 @@ public final class insertconfirm_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("    ");
  }else{ 
       out.write("\n");
-      out.write("        <h1>入力が不完全です</h1>\n");
+      out.write("        ");
+for(Map.Entry<Integer, String> val: eMsg.entrySet()){ 
+      out.write("\n");
+      out.write("        <h1>");
+      out.print(val.getValue());
+      out.write("の入力が不完全です</h1> ");
+ } 
+      out.write("\n");
       out.write("    ");
  } 
       out.write("\n");
