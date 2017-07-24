@@ -26,19 +26,32 @@ import java.util.Random;
         }
     }
     public ArrayList<Integer> deal(){
+        //山札から２枚引いたカードをdealCardにセット
         ArrayList <Integer> dealCard = new ArrayList<Integer>();
         Random rand = new Random();
         
-        for(int i = 0; i < 2; i++){
         Integer index = rand.nextInt(Cards.size());
-                dealCard.add(Cards.get(index));
-        }
+        dealCard.add(Cards.get(index));
+        Cards.remove(index);
+        System.out.println(Cards.size());
+        //System.out.println(Cards.get(index));
+        Integer index1 = rand.nextInt(Cards.size());
+        dealCard.add(Cards.get(index1));
+        Cards.remove(index1);
+        System.out.print(Cards.size());
+                
+//        for(int i = 0; i < 2; i++){
+//        Integer index = rand.nextInt(Cards.size());
+//                dealCard.add(Cards.get(index));
+//        }
                 return dealCard;
     }
         
     public ArrayList<Integer> hit(){
         ArrayList <Integer> hitCard = new ArrayList<Integer>();    
+        System.out.print(Cards.size());
         Random rand1 = new Random();
+        
         Integer index = rand1.nextInt(Cards.size());
         hitCard.add(Cards.get(index));
         return hitCard;
