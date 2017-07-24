@@ -104,7 +104,7 @@ public class UserDataBeans implements Serializable{
             return 0;
         }
     }
-    public String getYear1(){
+    public String getYearS(){
         return year;
     }
     
@@ -116,7 +116,7 @@ public class UserDataBeans implements Serializable{
             return 0;
         }
     }
-    public String getMonth1(){
+    public String getMonthS(){
         return month;
     }
     
@@ -128,7 +128,7 @@ public class UserDataBeans implements Serializable{
             return 0;
         }
     }
-    public String getDay1(){
+    public String getDayS(){
         return day;
     }
     

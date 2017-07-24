@@ -2,12 +2,14 @@ package jums;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jums.UserDataBeans;
 
 /**
  * insertresultと対応するサーブレット
@@ -31,6 +33,7 @@ public class InsertResult extends HttpServlet {
         
         //セッションスタート
         HttpSession session = request.getSession();
+        HttpSession hs = request.getSession();
         
         try{
             //課題２
@@ -40,19 +43,40 @@ public class InsertResult extends HttpServlet {
                 throw new Exception("不正なアクセスです");
             }
             
+            
             //ユーザー情報に対応したJavaBeansオブジェクトに格納していく
-            UserDataDTO userdata = new UserDataDTO();
-            userdata.setName((String)session.getAttribute("name"));
-            Calendar birthday = Calendar.getInstance();
-            userdata.setBirthday(birthday.getTime());
-            userdata.setType(Integer.parseInt((String)session.getAttribute("type")));
-            userdata.setTell((String)session.getAttribute("tell"));
-            userdata.setComment((String)session.getAttribute("comment"));
+            UserDataBeans udb = (UserDataBeans)hs.getAttribute("udb");
+            UserDataDTO userdata = new UserDataDTO();            
+            
+            //名前
+            userdata.setName(udb.getName());
+            
+            //生年月日(年・月・日)
+            //SimpleDateFormatでDate型に変更            
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            //String test = udb.getYear()+"/"+udb.getMonth()+"/"+udb.getDay();
+            Date birthday = sdf.parse(udb.getYearS()+"/"+udb.getMonthS()+"/"+udb.getDayS());
+            userdata.setBirthday(birthday);
+
+            //電話番号
+            userdata.setTell(udb.getTell());
+
+            //種別
+            userdata.setType(Integer.parseInt(udb.getType()));
+            
+            //自己紹介
+            userdata.setComment(udb.getComment());
+            
+            //userDataDTOをセッションに格納
+            session.setAttribute("userdata", userdata);
             
             //DBへデータの挿入
-            UserDataDAO .getInstance().insert(userdata);
+            UserDataDAO.getInstance().insert(userdata);
             
             request.getRequestDispatcher("/insertresult.jsp").forward(request, response);
+        }catch(SQLException e_sql){
+            request.setAttribute("error", e_sql.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }catch(Exception e){
             //データ挿入に失敗したらエラーページにエラー文を渡して表示
             request.setAttribute("error", e.getMessage());

@@ -27,10 +27,13 @@ public class UserDataDAO {
         Connection con = null;
         PreparedStatement st = null;
         try{
+            //java.util.Dateをjava.sql.Dateに変換
+            java.sql.Date d1 = new java.sql.Date(ud.getBirthday().getTime());
+            
             con = DBManager.getConnection();
             st =  con.prepareStatement("INSERT INTO user_t(name,birthday,tell,type,comment,newDate) VALUES(?,?,?,?,?,?)");
             st.setString(1, ud.getName());
-            st.setDate(2, new java.sql.Date(System.currentTimeMillis()));//指定のタイムスタンプ値からSQL格納用のDATE型に変更
+            st.setDate(2, d1);
             st.setString(3, ud.getTell());
             st.setInt(4, ud.getType());
             st.setString(5, ud.getComment());

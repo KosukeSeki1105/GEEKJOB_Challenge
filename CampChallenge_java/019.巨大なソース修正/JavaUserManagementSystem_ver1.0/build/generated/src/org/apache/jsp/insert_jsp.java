@@ -163,7 +163,11 @@ if(udb != null){
       out.write("\n");
       out.write("        自己紹介文\n");
       out.write("        <br>\n");
-      out.write("        <textarea name=\"comment\" rows=10 cols=50 style=\"resize:none\" wrap=\"hard\">kokoko</textarea><br><br>\n");
+      out.write("        <textarea name=\"comment\" rows=10 cols=50 style=\"resize:none\" wrap=\"hard\">");
+ if(udb != null){ 
+      out.print( udb.getComment());
+ } 
+      out.write("</textarea><br><br>\n");
       out.write("        \n");
       out.write("        <input type=\"hidden\" name=\"ac\"  value=\"");
       out.print( hs.getAttribute("ac"));

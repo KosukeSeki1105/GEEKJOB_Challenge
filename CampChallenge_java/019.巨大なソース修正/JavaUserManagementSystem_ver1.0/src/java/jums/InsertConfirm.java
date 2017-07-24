@@ -54,9 +54,9 @@ public class InsertConfirm extends HttpServlet {
              //未入力フォームがあった場合はHashMapに格納
              HashMap<Integer, String> eMsg = new HashMap<Integer, String>();
              if(udb.getName().equals("")){ eMsg.put(1, "名前"); }
-             if(udb.getYear1().equals("")){ eMsg.put(2, "年"); }
-             if(udb.getMonth1().equals("")){ eMsg.put(3, "月"); }
-             if(udb.getDay1().equals("")){ eMsg.put(4, "日"); }
+             if(udb.getYearS().equals("")){ eMsg.put(2, "年"); }
+             if(udb.getMonthS().equals("")){ eMsg.put(3, "月"); }
+             if(udb.getDayS().equals("")){ eMsg.put(4, "日"); }
              if(udb.getType().equals("")){ eMsg.put(5, "種別"); }
              if(udb.getTell().equals("")){ eMsg.put(6, "電話番号"); }
              if(udb.getComment().equals("")){ eMsg.put(7, "自己紹介"); }

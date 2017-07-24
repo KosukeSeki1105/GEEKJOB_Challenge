@@ -1,7 +1,7 @@
 <%@page import="javax.servlet.http.HttpSession" %>
 <%@page import="jums.JumsHelper" %>
-<%@page import="jums.UserDataBeans" %>
 <%@page import="jums.InsertConfirm" %>
+<%@page import="jums.UserDataBeans" %>
 <%@page import="java.util.*"%>
 <%
     HttpSession hs = request.getSession();
