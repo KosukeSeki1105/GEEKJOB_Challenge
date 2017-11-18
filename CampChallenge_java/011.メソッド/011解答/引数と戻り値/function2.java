@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author k-seki
  */
+/*
+  課題「引数、戻り値1」の3人分のプロフィールのうち、1人だけ住所の値をnullで定義し、
+  ループ処理で全員分のプロフィールをid以外表示する処理を作成してください。
+  この際、nullになっているデータはcontinueで飛ばしながら表示してください。
+*/
 public class function2 extends HttpServlet {
 
     /**
@@ -26,17 +31,15 @@ public class function2 extends HttpServlet {
      * @return 
      */
     
-    /*
-      課題「引数、戻り値1」の3人分のプロフィールのうち、1人だけ住所の値をnullで定義し、
-      ループ処理で全員分のプロフィールをid以外表示する処理を作成してください。
-      この際、nullになっているデータはcontinueで飛ばしながら表示してください。
-    */
-     public String[] getProf(int index) {
-        String[] prof1 = {"1", "山田太郎", "1970.3.5", "東京都"};
-        String[] prof2 = {"2", "山田花子", "1975.7.24", "東京都"};
-        String[] prof3 = {"3", "山田涼太", "2001.10.3", null};
+    // メソッド作成
+     public String[] getProf( int index ) {
+        // 3人分のプロフィールのうち、1人だけ住所の値をnullで定義
+        String[] prof1 = { "1", "山田太郎", "1970.3.5", "東京都" };
+        String[] prof2 = { "2", "山田花子", "1975.7.24", "東京都" };
+        String[] prof3 = { "3", "山田涼太", "2001.10.3", null };
         
-        switch(index) {
+        // 引数として渡された値と同じIDを持つ人物のプロフィールを返却
+        switch( index ) {
             case 1:
                 return prof1;
             case 2:
@@ -45,6 +48,7 @@ public class function2 extends HttpServlet {
                 return prof3;
         }
         
+        // 引数として渡された値と同じIDを持つ人物のプロフィールがなければnullを返却
         return null;
     }
      
@@ -58,17 +62,16 @@ public class function2 extends HttpServlet {
             out.println("<title>引数、戻り値2</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("課題「引数、戻り値1」の3人分のプロフィールのうち、1人だけ住所の値をnullで定義し、<br>");
-            out.println("ループ処理で全員分のプロフィールをid以外表示する処理を作成します。<br>");
-            out.println("この際、nullになっているデータはcontinueで飛ばしながら表示します。<br><br>");
             
-            for(int i = 1; i <= 3; i++) {
-                String[] prof = getProf(i);
-                for(String value:prof) {
-                    if(prof[0].equals(value) || value == null) continue;
-                    out.print(value + "<br>");
+            for( int i = 1; i <= 3; i++ ) {
+                String[] prof = getProf( i );   // メソッド呼び出し
+                for( String value : prof ) {
+                    if( prof[0].equals( value ) || value == null ) {  // 取り出した要素がIDもしくはnullの場合
+                        continue;
+                    }
+                    out.print( value + "<br>" );
                 }            
-                out.print("<br>");
+                out.print( "<br>" );
             }
             
             out.println("</body>");

@@ -16,6 +16,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author k-seki
  */
+/*
+  課題「ユーザー定義メソッドの作成」で定義したメソッドを拡張します。
+  メソッドへ戻り値を追加し、　true(boolean)　を返却するように修正してください。
+  また、メソッドの呼び出し側で戻り値を評価し、trueなら「この処理は正しく実行できました」、そうでないなら「正しく実行できませんでした」と表示してください。
+*/
 public class ReturnValue1 extends HttpServlet {
 
     /**
@@ -25,16 +30,11 @@ public class ReturnValue1 extends HttpServlet {
      * @param out
      */
     
-    /*
-      課題「ユーザー定義メソッドの作成」で定義したメソッドを拡張します。
-      メソッドへ戻り値を追加し、　true(boolean)　を返却するように修正してください。
-      また、メソッドの呼び出し側で戻り値を評価し、trueなら「この処理は正しく実行できました」、そうでないなら「正しく実行できませんでした」と表示してください。
-    */
-    public boolean printProfile(PrintWriter out) {
-        out.print("名前：関皓理<br><br>");
-        out.print("生年月日：1993年11月5日<br><br>");
-        out.print("自己紹介：<br>キャンプ卒業しました！<br>");
-        out.print("早速、仕事に追われてます・・・。<br><br><br>");
+    // メソッド作成
+    public boolean displayProfile( PrintWriter out ) {
+        out.print( "名前：関皓理<br>" );
+        out.print( "生年月日：1993年11月5日<br>" );
+        out.print( "自己紹介：2017年8月31日にキャンプ卒業しました！<br><br>" );
         return true;
     }
     
@@ -49,15 +49,12 @@ public class ReturnValue1 extends HttpServlet {
             out.println("<title>戻り値1</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("課題「ユーザー定義メソッドの作成」で定義したメソッドを拡張します。<br>");
-            out.println("メソッドへ戻り値を追加し、　true(boolean)　を返却するように修正します。<br>");
-            out.println("また、メソッドの呼び出し側で戻り値を評価し、<br>");
-            out.println("trueなら「この処理は正しく実行できました」、そうでないなら「正しく実行できませんでした」と表示します。<br><br>");
-            
-            if(printProfile(out)) {
-                out.print("この処理は正しく実行できました");
+
+            // メソッド呼び出し
+            if( displayProfile(out) ) {
+                out.print( "この処理は正しく実行できました" );
             } else {
-                out.print("正しく実行できませんでした");
+                out.print( "正しく実行できませんでした" );
             }
             
             out.println("</body>");

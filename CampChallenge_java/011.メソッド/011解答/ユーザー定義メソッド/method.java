@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author k-seki
  */
+// 自分のプロフィール(名前、生年月日、自己紹介)を3行に分けて表示するユーザー定義メソッドを作り、メソッドを10回呼び出して下さい。
 public class method extends HttpServlet {
 
     /**
@@ -24,12 +25,11 @@ public class method extends HttpServlet {
      * @param out
      */
     
-//    自分のプロフィール(名前、生年月日、自己紹介)を3行に分けて表示するユーザー定義メソッドを作り、メソッドを10回呼び出して下さい。
-    public void printProfile(PrintWriter out) {
-        out.print("名前：関皓理<br><br>");
-        out.print("生年月日：1993年11月5日<br><br>");
-        out.print("自己紹介：<br>キャンプ卒業しました！<br>");
-        out.print("早速、仕事に追われてます・・・。<br><br><br>");
+    // メソッド作成
+    public void displayProfile( PrintWriter out ) {
+        out.print( "名前：関皓理<br>" );
+        out.print( "生年月日：1993年11月5日<br>" );
+        out.print( "自己紹介：2017年8月31日にキャンプ卒業しました！<br><br>" );
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -43,11 +43,11 @@ public class method extends HttpServlet {
         out.println("<title>ユーザー定義メソッドの作成</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<p>自分のプロフィール(名前、生年月日、自己紹介)を3行に分けて表示するユーザー定義メソッドを作り、<br>メソッドを10回呼び出します。</p>");
         
-        for(int i = 1; i <= 10; i++) {
-            out.print(i + "回目<br>");
-            printProfile(out);
+        // メソッドを10回呼び出す
+        for( int i = 1; i <= 10; i++ ) {
+            out.print( i + "回目<br>" );
+            displayProfile( out );
         }
         
         out.println("</body>");

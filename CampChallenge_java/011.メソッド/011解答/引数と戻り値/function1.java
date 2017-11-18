@@ -16,28 +16,31 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author k-seki
  */
+/*
+  引数が１つのメソッドを作成してください。
+  メソッドの中の処理は、３人分のプロフィール（項目は戻り値2と同様）を作成し、
+  引数として渡された値と同じIDを持つ人物のプロフィールを返却する様にしてください。
+  それ以降は課題「戻り値2」と同じ処理にしてください。
+*/
 public class function1 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param index
+     * @param num
      * @return 
      */
     
-    /*
-      引数が１つのメソッドを作成してください。
-      メソッドの中の処理は、３人分のプロフィール（項目は戻り値2と同様）を作成し、
-      引数として渡された値と同じIDを持つ人物のプロフィールを返却する様にしてください。
-      それ以降は課題「戻り値2」と同じ処理にしてください。
-    */
-    public String[] getProf(int index) {
-        String[] prof1 = {"1", "山田太郎", "1970.3.5", "東京都"};
-        String[] prof2 = {"2", "山田花子", "1975.7.24", "東京都"};
-        String[] prof3 = {"3", "山田涼太", "2001.10.3", "東京都"};
+    // メソッド作成
+    public String[] getProf( int num ) {
+        // 3人分のプロフィールを作成
+        String[] prof1 = { "1", "山田太郎", "1970.3.5", "東京都" };
+        String[] prof2 = { "2", "山田花子", "1975.7.24", "東京都" };
+        String[] prof3 = { "3", "山田涼太", "2001.10.3", "東京都" };
         
-        switch(index) {
+        // 引数として渡された値と同じIDを持つ人物のプロフィールを返却
+        switch( num ) {
             case 1:
                 return prof1;
             case 2:
@@ -46,6 +49,7 @@ public class function1 extends HttpServlet {
                 return prof3;
         }
         
+        // 引数として渡された値と同じIDを持つ人物のプロフィールがなければnullを返却
         return null;
     }
     
@@ -59,26 +63,23 @@ public class function1 extends HttpServlet {
             out.println("<title>引数、戻り値1</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("引数が１つのメソッドを作成します。<br>");
-            out.println("メソッドの中の処理は、３人分のプロフィール（項目は戻り値2と同様）を作成し<br>");
-            out.println("引数として渡された値と同じIDを持つ人物のプロフィールを返却する様にします。<br>");
-            out.println("それ以降は課題「戻り値2」と同じ処理にします。（が、少し変更しました笑）<br><br>");
+
+            // 変数初期化
+            int num = 1;
+
+            // メソッド呼び出し
+            String[] prof = getProf( num );
             
-            int[] index = {1, 2, 3, 4};
-            
-            for(int i = 1; i <= index.length; i++) {
-                String[] prof = getProf(i);
-                if(prof != null) {
-                    for(String value:prof) {
-                        if(value.equals(prof[0])){
-                            continue;
-                        }
-                        out.print(value + "<br>");
+            if( prof != null ) {  // 返却されたプロフィールがnullでない
+                // 拡張for文
+                for( String value : prof ) {
+                    if( value.equals( prof[0] ) ) {  // IDは表示しない
+                        continue;
                     }
-                } else {
-                    out.print(i + "と同じIDを持つ人物が存在しません。<br>");
+                    out.print( value + "<br>" );
                 }
-                out.print("<br>");
+            } else {             // 返却されたプロフィールがnull
+                out.print( num + "と同じIDを持つ人物が存在しません。<br>" );
             }
             
             out.println("</body>");

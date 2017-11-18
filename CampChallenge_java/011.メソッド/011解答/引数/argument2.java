@@ -16,6 +16,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author k-seki
  */
+/*
+  1. ３つの引数を持ち、渡された数値で掛け算をするメソッドを作成します。
+  メソッドは、１つ目の引数と２つ目の引数を掛け算し、３つ目の引数がtrueの場合は結果を２乗させてください。
+  また、２つ目の引数は5、３つ目の引数はfalseをデフォルト値として設定してください。
+  2. 作成したメソッドを呼び出し、結果を表示してください。
+*/
 public class argument2 extends HttpServlet {
 
     /**
@@ -27,28 +33,26 @@ public class argument2 extends HttpServlet {
      * @param out
      */
     
-    /*
-      1. ３つの引数を持ち、渡された数値で掛け算をするメソッドを作成します。
-      メソッドは、１つ目の引数と２つ目の引数を掛け算し、３つ目の引数がtrueの場合は結果を２乗させてください。
-      また、２つ目の引数は5、３つ目の引数はfalseをデフォルト値として設定してください。
-      2. 作成したメソッドを呼び出し、結果を表示してください。
-    */
-    
-    public void multiplication(int num1, int num2, boolean bl, PrintWriter out) {
+    // メソッド作成
+    public void multiply( int num1, int num2, boolean bl, PrintWriter out) {
+        // 計算結果を格納するための変数
         int result;
         
+        // １つ目の引数と２つ目の引数を掛け算
         result = num1 * num2;
         
-        if(bl) {
-            result *= result;
-            out.print("（" + num1 + " × " + num2 + "）" +"の２乗は、 " + result + "<br>");
-        } else {
-            out.print(num1 + " × " + num2 + " = " + result + "<br>");
+        if(bl) {    // 計算結果を表示した後、それを2乗し表示
+            out.print( num1 + " × " + num2 + " = " + result + "<br>" );
+            out.print( result + " の２乗： " + ( result * result ) + "<br><br>" );
+        } else {    // 計算結果の表示のみ
+            out.print( num1 + " × " + num2 + " = " + result + "<br><br>" );
         }
     }
     
-    public void multiplication(int num1, PrintWriter out) {
-        multiplication(num1, 5, false, out);
+    // オーバーロード
+    public void multiply( int num1, PrintWriter out ) {
+        // デフォルト値設定
+        multiply( num1, 5, false, out );
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -62,14 +66,11 @@ public class argument2 extends HttpServlet {
             out.println("<title>引数2</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("1. ３つの引数を持ち、渡された数値で掛け算をするメソッドを作成します。<br>");
-            out.println("メソッドは、１つ目の引数と２つ目の引数を掛け算し、３つ目の引数がtrueの場合は結果を２乗します。<br>");
-            out.println("また、２つ目の引数は5、３つ目の引数はfalseをデフォルト値として設定します。<br>");
-            out.println("2. 作成したメソッドを呼び出し、結果を表示します。<br><br>");
             
-            multiplication(5, 9, true, out);
-            multiplication(3, 4, false, out);
-            multiplication(21, out);
+            // メソッド呼び出し
+            multiply( 5, 9, true, out );
+            multiply( 3, 4, false, out );
+            multiply( 21, out );
             
             out.println("</body>");
             out.println("</html>");

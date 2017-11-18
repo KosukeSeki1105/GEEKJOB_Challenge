@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author k-seki
  */
+//1. 引数として数値を受け取り、その値が奇数か偶数か判別＆表示するメソッドを作成してください。
+//2. 作成したメソッドを利用して、適当な数値の奇数・偶数の判別を行ってください。   
 public class argument1 extends HttpServlet {
 
     /**
@@ -26,14 +28,12 @@ public class argument1 extends HttpServlet {
      * @param out
      */
     
-    //1. 引数として数値を受け取り、その値が奇数か偶数か判別＆表示するメソッドを作成してください。
-    //2. 作成したメソッドを利用して、適当な数値の奇数・偶数の判別を行ってください。
-    
-    public void discrimination(int num, PrintWriter out) {
-        if(num %2 == 0) {
-            out.print(num + "は偶数です。<br><br>");
-        } else {
-            out.print(num + "は奇数です。<br><br>");
+    // メソッド作成
+    public void discriminate( int num, PrintWriter out ) {
+        if( num %2 == 0 ) {     // 値が偶数
+            out.print( num + "は偶数です。" );
+        } else {                // それ以外
+            out.print( num + "は奇数です。" );
         }
     }
 
@@ -41,19 +41,19 @@ public class argument1 extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-            /* TODO output your page here. You may use following sample code. */
+
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>引数1</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("1. 引数として数値を受け取り、その値が奇数か偶数か判別＆表示するメソッドを作成します。<br>");
-            out.println("2. 作成したメソッドを利用して、適当な数値の奇数・偶数の判別を行います。<br><br>");
             
-            for(int i = 1; i <= 100; i++) {
-            discrimination(i, out);
-            }
+            // 変数宣言
+            int num = 24;
+            
+            // メソッド呼び出し
+            discriminate( num, out );
             
             out.println("</body>");
             out.println("</html>");

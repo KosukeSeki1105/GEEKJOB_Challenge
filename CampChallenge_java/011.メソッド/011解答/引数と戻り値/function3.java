@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author k-seki
  */
+/*
+  「引数、戻り値2」の処理において、Integer limit=2を用意し、
+  limitを利用して２名のプロフィール表示までで停止する様に処理を実装してください。  
+*/
 public class function3 extends HttpServlet {
 
     /**
@@ -24,30 +28,36 @@ public class function3 extends HttpServlet {
      * methods.
      *
      * @param limit
-     * @return 
+     * @return ArrayList<String[]>
      */
     
-    //課題「引数、戻り値2」の処理において、Integer limit=2を用意し、
-    //limitを利用して２名のプロフィール表示までで停止する様に処理を実装してください。
-     public ArrayList<String[]> getProf(Integer limit) {
-        String[] prof1 = {"1", "山田太郎", "1970.3.5", null};
-        String[] prof2 = {"2", "山田花子", "1975.7.24", "東京都"};
-        String[] prof3 = {"3", "山田涼太", "2001.10.3", null};
+    // メソッド作成
+    public ArrayList<String[]> getProf( Integer limit ) {
+        // 3人分のプロフィールのうち、1人だけ住所の値をnullで定義
+        String[] prof1 = { "1", "山田太郎", "1970.3.5", "東京都" };
+        String[] prof2 = { "2", "山田花子", "1975.7.24", "東京都" };
+        String[] prof3 = { "3", "山田涼太", "2001.10.3", null };
         
-        ArrayList<String[]> data = new ArrayList<String[]>();
-        data.add(prof1);
-        data.add(prof2);
-        data.add(prof3);
-        
+        // 複数のプロフィールを返却できるようにするためArrayListを作成
         ArrayList<String[]> profs = new ArrayList<String[]>();
-        int index =1;
-        for(String[] value:data) {
-            if(index <= limit && value[0].equals(String.valueOf(index))) {
-                profs.add(value);
-                index++;
+        
+        // limit分だけArrayListにプロフィールを格納
+        for( int i = 1; i <= limit; i++ ) {
+            // iの値と対応するプロフィールをArrayListに格納
+            switch( i ) {
+                case 1:
+                    profs.add( prof1 );
+                    break;
+                case 2:
+                    profs.add( prof2 );
+                    break;
+                case 3:
+                    profs.add( prof3 );
+                    break;
             }
         }
         
+        // ArrayList返却
         return profs;
     }
     
@@ -61,20 +71,18 @@ public class function3 extends HttpServlet {
             out.println("<title>引数、戻り値3</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("課題「引数、戻り値2」の処理において、Integer limit=2を用意し、<br>");
-            out.println("limitを利用して２名のプロフィール表示までで停止する様に処理を実装します。<br><br>");
             
-            Integer limit = 2;    
+            Integer limit = 2;
+            
+            // メソッド呼び出し
             ArrayList<String[]> profs = getProf(limit);
             
-            for(String[] item:profs) {
-                if(item[3] == null) {
-                    out.print(item[1] + "<br>" + item[2] + "<br>");
-                    out.print("<br>");
-                } else {
-                    out.print(item[1] + "<br>" + item[2] + "<br>" + item[3] + "<br>");
-                    out.print("<br>");
+            // 拡張for文
+            for( String[] prof : profs ) {        // 2人分のプロフィール
+                for( String value : prof ) {      // 1人分のプロフィール内容を表示
+                    out.print( value + "<br>" );
                 }
+                out.print( "<br>" );
             }
             
             out.println("</body>");

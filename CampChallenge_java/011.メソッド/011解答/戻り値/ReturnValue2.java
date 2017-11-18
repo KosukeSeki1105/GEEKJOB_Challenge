@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author k-seki
  */
+/*
+  1. 戻り値として、人物のID、名前、生年月日、住所を配列にして返却するメソッドを作成してください。
+  2. 作成したメソッドを呼び出し、戻り値のID以外を表示してください。
+*/
 public class ReturnValue2 extends HttpServlet {
 
     /**
@@ -25,13 +29,9 @@ public class ReturnValue2 extends HttpServlet {
      * @return 
      */
     
-    /*
-      1. 戻り値として、人物のID、名前、生年月日、住所を配列にして返却するメソッドを作成してください。
-      2. 作成したメソッドを呼び出し、戻り値のID以外を表示してください。
-    */
-    
+    // メソッド作成
     public String[] getProf() {
-        String[] prof = {"1" , "山田太郎", "1970.3.5","鹿児島県"};
+        String[] prof = { "1", "山田太郎", "1970.3.5", "静岡県" };
         return prof;
     }
     
@@ -45,12 +45,13 @@ public class ReturnValue2 extends HttpServlet {
             out.println("<title>戻り値2</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println(" 1. 戻り値として、人物のID、名前、生年月日、住所を配列にして返却するメソッドを作成します。<br>");
-            out.println(" 2. 作成したメソッドを呼び出し、戻り値のID以外を表示します。<br><br>");
-            
+
+            // メソッド呼び出し
             String[] prof = getProf();
-            for(String value:prof){
-                if(value.equals(prof[0])) {
+            
+            // 拡張for文
+            for( String value:prof ){
+                if( value.equals( prof[0] ) ) {  // IDは表示しない
                     continue;
                 }
                 out.print(value + "<br>");
