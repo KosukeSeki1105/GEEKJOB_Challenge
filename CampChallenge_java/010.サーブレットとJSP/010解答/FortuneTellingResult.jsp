@@ -5,6 +5,7 @@
 --%>
 <%@page import="org.camp.servlet.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!--　EL式を用いてスコープに格納した情報を取得　＄{プロパティ名.フィールド名}-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,7 @@
         <title>占い結果</title>
     </head>
     <body>
-        <h3>（・ω・）/ あなたの ${DATA.d} の運勢（・ω・）/</h3>
+        <h3>（・ω・）/ あなたの ${DATA.date} の運勢（・ω・）/</h3>
         ${DATA.message}
         <font color="RED"><b>${DATA.luck}！！</b></font> 
     </body>

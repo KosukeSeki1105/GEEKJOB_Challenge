@@ -8,13 +8,11 @@
 <!DOCTYPE html>
 <!--「groove」「-」「gear」の３つの文字列を連結して表示してください-->
 <%
-    out.print("「groove」「-」「gear」の３つの文字列を連結して表示します。<br><br>");
-    
     String str1 = "groove";
-    char str2 = '-';
-    String str3 = "gear";
+    char ch = '-';
+    String str2 = "gear";
     
-    out.print(str1 + str2 + str3);
+    out.print( str1 + ch + str2 );
 %>
 <html>
     <head>

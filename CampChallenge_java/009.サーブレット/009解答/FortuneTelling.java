@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author admin
+ * @author k-seki
  */
 public class FortuneTelling extends HttpServlet {
 
@@ -30,27 +30,27 @@ public class FortuneTelling extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter(); 
+        response.setContentType( "text/html;charset=UTF-8" );
+        PrintWriter out = response.getWriter();
         
-        //"大吉", "中吉", "吉", "半吉", "末小吉", "凶", "小凶", "半凶", "末凶", "凶", "大凶"
-        String luckList[] = {"大吉", "中吉", "吉", "半吉", "末小吉", "凶", "小凶", "半凶", "末凶", "凶", "大凶"};
+        // 運勢の要素を格納
+        String[] luckList = { "大吉", "中吉", "吉", "半吉", "末小吉", "凶", "小凶", "半凶", "末凶", "凶", "大凶" };
         
-        //乱数クラス生成
+        // Randomクラス生成
         Random random = new Random();
         
-        //乱数取得
-        Integer index = random.nextInt(luckList.length);
+        // 乱数取得
+        Integer index = random.nextInt( luckList.length );
         
-        //運勢にあわせたメッセージ作成
+        // 運勢にあわせたメッセージ作成
         String message = "";
-        if(index >= 0 && index <= 4) {
+        if( index >= 0 && index <= 4 ) {      // 半小吉～大吉の場合
             message += "よかったね！！";
-        } else {
+        } else {                              // 大凶～凶の場合
             message += "ざんねん。。。";
         }
         
-        //運勢が入った配列の乱数番目に入っている要素を画面に表示
+        // 運勢が入った配列の乱数番目に入っている要素を画面に表示
         out.println("<!DOCTYPE html>");
         out.println("<html>");
         out.println("<head>");
@@ -58,9 +58,9 @@ public class FortuneTelling extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h2>あなたの今日の運勢（・ω・）/！</h2>");
-        out.println(message + "<b>" + luckList[index] + "</b>" + " です！</h1>");
+        out.println(message + "<b>" + luckList[index] + "</b>" + " です！");
         out.println("</body>");
-        out.println("</html>");     
+        out.println("</html>");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

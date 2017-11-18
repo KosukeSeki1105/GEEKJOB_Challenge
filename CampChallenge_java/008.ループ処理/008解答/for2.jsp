@@ -8,13 +8,12 @@
 <!DOCTYPE html>
 <!--for文を利用して、適当な変数へ文字連結を行い、中に"A"が30個入った状態にしてください。-->
 <%
-    out.print("for文を利用して、適当な変数へ文字連結を行い、中に\"A\"が30個入った状態にします。<br><br>");
+    // 変数宣言
+    String name = "（・ω・）/";
     
-    String name = "B";
-    
-    for(int i = 1; i <= 30; i++) {
+    for( int i = 1; i <= 30; i++ ) {
         name += "A";
-        out.print(i + "個目：" +name + "<br>");
+        out.print( i + "個目：" + name + "<br>" );
     }
 %>
 <html>

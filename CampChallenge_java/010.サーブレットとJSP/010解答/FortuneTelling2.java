@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author admin
+ * @author k-seki
  */
 public class FortuneTelling2 extends HttpServlet {
 
@@ -32,33 +32,36 @@ public class FortuneTelling2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String luckList[] = {"大吉", "中吉", "吉", "半吉", "末小吉", "凶", "小凶", "半凶", "末凶", "凶", "大凶"};
+        // 運勢の要素を格納
+        String luckList[] = { "大吉", "中吉", "吉", "半吉", "末小吉", "凶", "小凶", "半凶", "末凶", "凶", "大凶" };
         
-        //日付取得
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日（EE）");
-        String d = sdf.format(new Date());
+        // 日付フォーマット生成
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy年MM月dd日（EE）" );
         
-        //乱数クラスを生成して乱数を取得
-        Integer index = new Random().nextInt(luckList.length);
+        // 現在の日付をフォーマット 
+        String date = sdf.format( new Date() );
         
-        //運勢にあわせたメッセージ作成
+        // Randomクラスを生成して乱数を取得
+        Integer index = new Random().nextInt( luckList.length );
+        
+        // 運勢にあわせたメッセージ作成
         String message = "";
-        if(index >= 0 && index <= 4) {
+        if( index >= 0 && index <= 4 ) {    // 半小吉～大吉の場合
             message += "よかったね！！";
-        } else {
+        } else {                            // 大凶～凶の場合
             message += "ざんねん。。。";
         }
         
-        //ResultDataクラスを生成して、値を格納
+        // ResultDataクラスを生成して、値を格納
         ResultData rd = new ResultData();
-        rd.setD(d);
-        rd.setLuck(luckList[index]);
-        rd.setMessage(message);
+        rd.setDate( date );
+        rd.setLuck( luckList[index] );
+        rd.setMessage( message );
         
-        //リクエストスコープに値を格納
-        request.setAttribute("DATA", rd);
+        // リクエストスコープに値を格納
+        request.setAttribute( "DATA", rd );
 
-        request.getRequestDispatcher("/WEB-INF/jsp/FortuneTellingResult.jsp").forward(request, response);
+        request.getRequestDispatcher( "/WEB-INF/jsp/FortuneTellingResult.jsp" ).forward( request, response );
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

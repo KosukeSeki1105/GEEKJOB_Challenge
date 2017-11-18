@@ -12,20 +12,15 @@
 <!--それ以外は何も表示しない処理-->
 <!--※型はcharを使用してください-->
 <%
-    out.print("switch文を利用して、以下の処理を実現します。<br>");
-    out.print("値が【A】なら「英語」<br>");
-    out.print("値が【あ】なら「日本語」<br>");
-    out.print("それ以外は何も表示しない処理<br>");
-    out.print("※型はcharを使用します<br><br>");
+    // 変数宣言
+    char ch = 'A';
     
-    char c = 'A';
-    
-    switch(c) {
-        case 'A':
-            out.print("英語");
+    switch( ch ) {
+        case 'A':   // 値が【A】
+            out.print( "英語" );
             break;
-        case 'あ':
-            out.print("日本語");
+        case 'あ':  // 値が【あ】
+            out.print( "日本語" );
             break;
     }
 %>

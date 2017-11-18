@@ -6,41 +6,43 @@
 package org.camp.servlet;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
  * @author k-seki
  */
 public class ResultData implements Serializable {
-    private String d;
-    private String luck;
-    private String message;
     
-    public ResultData(){}
+    // フィールド
+    private String date;      // 日付
+    private String luck;      // 運勢
+    private String message;   // メッセージ
     
     
-    public String getD() {
-        return d;
+    // コンストラクタ
+    public ResultData(){ }
+    
+    
+    // getter setter
+    public String getDate() {
+        return date;
     }
-    
-    public void setD(String d) {
-        this.d = d;
+    public void setDate( String date ) {
+        this.date = date;
     }
     
     public String getLuck() {
         return luck;
     }
-    
-    public void setLuck(String luck) {
+    public void setLuck( String luck ) {
         this.luck = luck;
     }
 
     public String getMessage() {
         return message;
     }
-    
-    public void setMessage(String message) {
+    public void setMessage( String message ) {
         this.message = message;
     }
+    
 }

@@ -7,10 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--「Hello World.」を表示してください-->
-<%
-    out.print("「Hello World.」 を表示します。<br><br>");
-    
-    out.print("Hello World.");
+<%    
+    out.print( "Hello World." );
 %>
 <html>
     <head>

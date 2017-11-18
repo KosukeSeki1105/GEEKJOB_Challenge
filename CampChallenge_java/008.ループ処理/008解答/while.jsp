@@ -9,18 +9,19 @@
 <!--while文を利用して、以下の処理を実現してください。-->
 <!--1. 1000を2で割り続け、100より小さくなったらループを抜ける処理-->
 <%
-    out.print("1000を2で割り続け、100より小さくなったらループを抜ける処理を行います。<br><br>");
-
+    // 変数宣言
     int num   = 1000;
+
+    // カウンタ
     int count = 0;
     
-    while(num > 100) {
+    while( num > 100 ) {
         out.print(num + " ÷ 2 = ");
         num /= 2;
-        out.print(num + "<br>");
+        out.print( num + "<br>" );
         count++;
     }
-    out.print(count + "回でループを抜けました。");
+    out.print( count + "回でループを抜けました。" );
 %>
 <html>
     <head>

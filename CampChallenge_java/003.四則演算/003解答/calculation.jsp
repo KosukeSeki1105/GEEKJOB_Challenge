@@ -8,18 +8,17 @@
 <!DOCTYPE html>
 <!--定数と変数を宣言し、それぞれに数値を入れて四則演算を行い、四則演算の結果をそれぞれ表示してください。-->
 <%
-    out.print("四則演算をします。<br><br>");
+    // 定数
+    final int BASENUM = 100;
     
-    final int BASE = 100;
-    int num1 = 10;
-    int num2 = 20;
-    int num3 = 30;
-    int num4 = 40;
+    // 変数
+    int num = 10;
     
-    out.print("100 + 10 = " + (BASE + num1) + "<br>");
-    out.print("100 - 20 = " + (BASE - num2) + "<br>");
-    out.print("100 × 30 = " + (BASE * num3) + "<br>");
-    out.print("100 ÷ 40 = " + (BASE / num4) + "<br>");
+    // 四則演算
+    out.print( "100 ＋ 10 = " + ( BASENUM + num ) + "<br>" );
+    out.print( "100 － 10 = " + ( BASENUM - num ) + "<br>" );
+    out.print( "100 × 10 = " + ( BASENUM * num ) + "<br>" );
+    out.print( "100 ÷ 10 = " + ( BASENUM / num ) + "<br>" );
 %>
 <html>
     <head>

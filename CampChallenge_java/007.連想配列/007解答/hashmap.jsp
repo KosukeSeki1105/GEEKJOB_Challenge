@@ -10,20 +10,23 @@
 <!--以下の順で、連想配列を作成してください。-->
 <!--"1"に"AAA", "hello"に"world", "soeda"に"33", "20"に"20"-->
 <%
-    out.print("以下の順で、連想配列を作成します。<br>");
-    out.print("\"1\"に\"AAA\", \"hello\"に\"world\", \"soeda\"に\"33\", \"20\"に\"20\"<br><br>");
-    
+    // HashMapの作成
     HashMap<String, String> data = new HashMap<String, String>();
-    data.put("1", "AAA");
-    data.put("hello", "world");
-    data.put("soeda", "33");
-    data.put("20", "20");
     
-    out.print("連想配列の中身を表示<br>");
-    out.print("1 ： " +data.get("1") + "<br>");
-    out.print("hello ： " +data.get("hello") + "<br>");
-    out.print("soeda ： " +data.get("soeda") + "<br>");
-    out.print("20 ： " +data.get("20") + "<br>");
+    // 要素の追加
+    data.put( "1", "AAA" );
+    data.put( "hello", "world" );
+    data.put( "soeda", "33" );
+    data.put( "20", "20" );
+    
+    /**
+     * 要素が格納されたかどうかの確認
+     */
+    // HashMapの要素を表示
+    out.print( "1： " + data.get( "1" ) + "<br>" );
+    out.print( "hello： " + data.get( "hello" ) + "<br>" );
+    out.print( "soeda： " + data.get( "soeda" ) + "<br>" );
+    out.print( "20： " + data.get( "20" ) + "<br>" );
 %>
 <html>
     <head>

@@ -8,13 +8,13 @@
 <!DOCTYPE html>
 <!--for文を利用して、0から100を全部足す処理を実現してください。-->
 <%
-    out.print("for文を利用して、0から100を全部足す処理を実現します。<br><br>");
-    
+    // 変数宣言
     int num = 0;
-    for(int i = 0; i <= 100; i++) {
-        out.print(num + " + " + i + " = ");
+    
+    for( int i = 0; i <= 100; i++ ) {
+        out.print( num + " + " + i + " = " );
         num += i;
-        out.print(num + "<br>");
+        out.print( num + "<br>" );
     }
 %>
 <html>

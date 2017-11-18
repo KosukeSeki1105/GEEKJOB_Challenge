@@ -4,26 +4,35 @@
     Author     : k-seki
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--課題「配列の作成」で作成した配列の"soeda"を"33"に変更してください。-->
 <%
-    out.print("課題「配列の作成」で作成した配列の\"soeda\"を\"33\"に変更します。<br><br>");
+    // ArrayList作成
+    ArrayList<String> al = new ArrayList<String>();
     
-    String[] data = {"10", "100", "soeda", "hayashi", "-20", "118", "END"};
-    int count = 0;
-    out.print("配列の中身を表示<br>");
-    for(String value:data) {
-        count++;
-        out.print(count + "番目：" + value + "<br>");
+    // ArrayListに格納する要素
+    String[] data = { "10", "100", "soeda", "hayashi", "-20", "118", "END" };
+
+    // 拡張for文でArrayListに要素を格納
+    for( String value : data ) {
+        al.add( value );
     }
     
-    count = 0;
-    out.print("<br>配列の３番目の中身を\"soeda\"から\"33\"に変更<br>");
-    data[2] = "33";
-    for(String value:data) {
+    // "soeda"を"33"に変更
+    al.set( 2, "33" );
+    
+    /**
+     * 変更されたかどうかの確認
+     */
+    // 順番用カウンタ
+    int count = 1;
+
+    // 拡張for文でArrayListの要素を表示
+    for( String value : al ) {
+        out.print( count + "番目：" + value + "<br>" );
         count++;
-        out.print(count + "番目：" + value + "<br>");
     }
 %>
 <html>

@@ -11,22 +11,18 @@
 <!--値が2なら「two」-->
 <!--それ以外は「想定外」と表示する処理-->
 <%
-    out.print("switch文を利用して、以下の処理を実現します。<br>");
-    out.print("値が1なら「one」<br>");
-    out.print("値が2なら「two」<br>");
-    out.print("それ以外は「想定外」と表示する処理<br><br>");
-
+    // 変数宣言
     int num = 1;
     
-    switch(num) {
-        case 1: 
-            out.print("one");
+    switch( num ) {
+        case 1:     // 値が1
+            out.print( "one" );
+            break;  
+        case 2:     // 値が2
+            out.print( "two" );
             break;
-        case 2:
-            out.print("two");
-            break;
-        default:
-            out.print("想定外");
+        default:    // それ以外
+            out.print( "想定外" );
             break;
     }
 %>
