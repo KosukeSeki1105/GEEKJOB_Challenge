@@ -47,6 +47,9 @@ public class logfile {
         // 読み込みメソッド呼び出し
         readFile();
          
+        // Scannerクローズ
+        scan.close();
+        
     }
     
 
