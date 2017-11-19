@@ -130,11 +130,11 @@ public class logfile {
             // BufferedReader作成
             br = new BufferedReader( fr );            
             
+            // 一行読み込み
             String line = br.readLine();
-            // 読み込み
             while( line != null ) {
                 System.out.println( line );
-                line = br.readLine();
+                line = br.readLine();       // 次の行の読み込み
             }
             
         } catch( FileNotFoundException e ) {
