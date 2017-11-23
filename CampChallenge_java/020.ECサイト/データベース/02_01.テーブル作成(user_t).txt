@@ -29,4 +29,3 @@ mysql> SHOW FIELDS FROM user_t;
 | deleteFlg | int(11)      | YES  |     | 0       |                |
 +-----------+--------------+------+-----+---------+----------------+
 8 rows in set (0.07 sec)
-

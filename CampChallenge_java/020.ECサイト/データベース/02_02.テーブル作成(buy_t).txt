@@ -25,4 +25,3 @@ mysql> SHOW FIELDS FROM buy_t;
 | buyDate  | datetime     | YES  |     | NULL    |                |
 +----------+--------------+------+-----+---------+----------------+
 5 rows in set (0.09 sec)
-
