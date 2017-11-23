@@ -1,5 +1,4 @@
 ﻿◆user_tテーブルの作成◆
-
 CREATE TABLE
   user_t
 ( userID int AUTO_INCREMENT PRIMARY KEY	// ユーザーID int 主キー 連番自動付与

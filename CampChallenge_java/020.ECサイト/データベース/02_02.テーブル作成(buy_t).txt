@@ -1,5 +1,4 @@
 ﻿◆buy_tテーブルの作成◆
-
 CREATE TABLE
   buy_t
 ( buyID int AUTO_INCREMENT PRIMARY KEY	// 購入ID int 主キー 連番自動付与
