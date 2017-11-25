@@ -1,0 +1,20 @@
+SMAP
+register_005fproduct_jsp.java
+JSP
+*S JSP
+*F
++ 0 register_product.jsp
+register_product.jsp
+*L
+5,12:54
+17:66,3
+18,3:69
+20:128,8
+21:136,3
+22:139
+22,7:74
+29,4:81,3
+33,6:93
+39:99,3
+40,9:102
+*E
