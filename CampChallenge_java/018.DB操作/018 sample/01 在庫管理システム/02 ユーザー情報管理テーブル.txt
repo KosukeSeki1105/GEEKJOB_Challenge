@@ -1,0 +1,8 @@
+﻿◆ユーザー情報管理テーブル◆
+
+CREATE
+TABLE Users						// ユーザーテーブル
+( UserID Integer AUTO_INCREMENT NOT NULL PRIMARY KEY	// ユーザーID 整数 連番自動付与 主キー
+, UserName varchar(255) NOT NULL UNIQUE			// ユーザー名 文字列 NOT NULL UNIQUE
+, UserPass varchar(255) NOT NULL UNIQUE			// パスワード 文字列 NOT NULL UNIQUE
+);

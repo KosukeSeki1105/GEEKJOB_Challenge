@@ -1,0 +1,11 @@
+﻿◆商品情報登録テーブル◆
+
+CREATE
+TABLE Products						// 商品テーブル
+( ProductID Integer AUTO_INCREMENT PRIMARY KEY 		// 商品ID 整数 連番自動付与 主キー
+, ProductName varchar(255) NOT NULL UNIQUE		// 商品名 文字列 NOT NULL UNIQUE
+, Price	Integer NOT NULL				// 単価 整数 NOT NULL 
+, Stocks Integer NOT NULL DEFAULT 0			// 在庫数 整数 NOT NULL DEFAULT 0
+, UpdateTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP	// 更新日時
+);
+

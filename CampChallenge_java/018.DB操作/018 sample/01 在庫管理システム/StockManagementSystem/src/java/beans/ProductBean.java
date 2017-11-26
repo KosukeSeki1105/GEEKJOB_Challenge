@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 /**
- *
+ * 検索した商品情報を保持するクラス
  * @author k-seki
  */
 public class ProductBean implements Serializable {
@@ -22,6 +22,9 @@ public class ProductBean implements Serializable {
     private int stock;
     private String updateTime;
 
+    // コンストラクタ
+    public ProductBean() {}
+    
     // getter・setter
     public int getProductID() {
         return productID;
