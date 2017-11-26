@@ -10,8 +10,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * DB接続・切断を一手に担うクラス
@@ -26,6 +24,9 @@ public class JDBCInfo {
      */
     public static final Connection getConnection() throws Exception {
         
+        // DB接続成功メッセージ
+        String message = "DB接続成功";
+        
         // 例外メッセージ
         final String MESSAGE = "接続時にエラーが発生しました。";        
         
@@ -38,7 +39,7 @@ public class JDBCInfo {
             
             // DB接続
             con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/testdb", "root", "root" );
-            System.out.println( "DB接続成功" );
+            System.out.println( message );
             
         } catch( Exception e ) {
             // エラーメッセージ作成
@@ -61,11 +62,11 @@ public class JDBCInfo {
      */
     public static final void disconnect( ResultSet rs, PreparedStatement ps, Connection con ) throws SQLException {
         
-        // メッセージ
-        String message = "";
+        // DB切断成功メッセージ
+        String message = "クローズ成功";
+        
         try {
-            // メッセージ
-            message = "クローズ成功";
+            
         }finally {    
             // ResultSetクローズ
             if( rs != null) {
@@ -88,8 +89,9 @@ public class JDBCInfo {
         
     }
     
+    
     /**
-     * DB切断
+     * DB切断(オーバーロード)
      * 
      * @param ps
      * @param con
@@ -99,7 +101,9 @@ public class JDBCInfo {
         
         ResultSet rs = null;
         
+        // メソッド呼び出し
         disconnect( rs, ps, con );
-        
+    
     }
+    
 }

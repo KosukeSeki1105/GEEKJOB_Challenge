@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * ログインを実現するクラス
+ * ログイン処理を実現するクラス
  * @author k-seki
  */
 
@@ -27,7 +27,7 @@ public class Login {
      * ログインチェック
      * @param name
      * @param password
-     * @return userData
+     * @return ユーザー情報
      * @throws SQLException
      * @throws ArrayIndexOutOfBoundsException
      * @throws Exception 
@@ -44,8 +44,12 @@ public class Login {
         con = JDBCInfo.getConnection();
 
         try{
+            // SQL文
+            String sql = "SELECT UserName FROM Users";
+            sql += " WHERE UserName = ? AND UserPass = ?";
+            
             // ユーザー名とパスワードが一致するレコードを検索
-            ps = con.prepareStatement( "SELECT UserName FROM Users WHERE UserName = ? AND UserPass = ?" );
+            ps = con.prepareStatement( sql );
             ps.setString( 1, name );
             ps.setString( 2, password );
             rs = ps.executeQuery();

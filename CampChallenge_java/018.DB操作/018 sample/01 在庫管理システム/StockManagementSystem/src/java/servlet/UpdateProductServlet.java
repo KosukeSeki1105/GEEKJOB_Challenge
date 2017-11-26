@@ -42,6 +42,7 @@ public class UpdateProductServlet extends HttpServlet {
         
         // 商品ID
         int productID = 0;
+        
         // 単価
         int price = 0;
         

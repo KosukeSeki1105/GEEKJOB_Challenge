@@ -54,12 +54,15 @@ public class SelectProductServlet extends HttpServlet {
         /**
          * 商品IDと商品名のみの取得
          */
-        if( selectType.equals( "productName") ) {
+        if( selectType.equals( "productIDName") ) {
             try {
+                // 商品IDと商品名取得
                 ArrayList<ProductBean> productNames = Select.getProductIDName();
-                session.setAttribute( "productNames", productNames );   // 表示用に商品名情報を格納
+                
+                session.setAttribute( "productNames", productNames );  // 表示用に商品名情報を格納
                 request.getRequestDispatcher( "/register_product.jsp" ).forward( request, response );  // 管理選択ページに遷移
                 return;
+                
             } catch( Exception e ) {
                 request.setAttribute( "error", e.getMessage() );
                 request.getRequestDispatcher( "/error.jsp" ).forward( request, response );  // エラーページに遷移
@@ -72,9 +75,12 @@ public class SelectProductServlet extends HttpServlet {
          */
         if( selectType.equals( "productAll" ) ) {
             try {
+                // 商品情報取得
                 ArrayList<ProductBean> bean = Select.getProductAll();
+                
                 request.setAttribute( "bean", bean );  // 表示用に商品情報を格納
                 request.getRequestDispatcher( "/show_products.jsp" ).forward( request, response );  // 商品一覧表示ページに遷移
+                
             } catch( SQLException e ) {
                 request.setAttribute( "error", e.getMessage() );
                 request.getRequestDispatcher( "/error.jsp" ).forward( request, response );  // エラーページに遷移

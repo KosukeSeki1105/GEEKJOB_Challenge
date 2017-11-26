@@ -38,8 +38,8 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        // メッセージ
-        String message = null;
+        // 未入力チェック用メッセージ
+        String message = "";
         
         // セッションスタート
         HttpSession session = request.getSession();
@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute( "name", name );    // 表示部用に名前情報を格納
         }
         
-        if( message != null ) {       // 未入力があったものはログインページへ遷移
+        if( ! message.equals( "" ) ) {       // 未入力があったものはログインページへ遷移
             request.setAttribute( "message", message );
             request.getRequestDispatcher( "/login.jsp" ).forward( request, response );
             return;
@@ -89,9 +89,10 @@ public class LoginServlet extends HttpServlet {
             
             if( userData[0] == null ) { // 該当するデータがない
                 request.setAttribute( "name", name );   // 表示用にユーザー名を格納
+                
                 message = "ユーザー名あるいはパスワードが間違っています。";
                 request.setAttribute( "message", message );
-                request.getRequestDispatcher( "/login.jsp" ).forward( request, response );  // ログインページに遷移
+                request.getRequestDispatcher( "/login.jsp" ).forward( request, response ); // ログインページに遷移
 
             } else {                   // 該当するデータがある
                 session.setAttribute( "name", userData[0] );

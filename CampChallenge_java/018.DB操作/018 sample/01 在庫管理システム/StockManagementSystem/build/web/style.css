@@ -1,0 +1,124 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017/11/26, 14:04:00
+    Author     : k-seki
+*/
+
+/* Common */
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background: #fff url(images/bg_main.png);
+        font-family: Verdana, sans-serif;
+        font-size: 0.9em;
+        color: #303018;
+        line-height: 250%
+    }
+    a{
+        color: #2488f3;
+    }
+    h1, h2, h3, h4 {
+        display: inline;
+        padding: 0 20px;
+    }
+    h1 {
+        font-size: 1.5em;
+        border-bottom: 3px solid #9900ff;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+    h3 {
+        border-left: 5px solid #90d860;
+        margin-bottom: 5px;
+        font-size: 1.25em;
+    }
+    h3.order {
+        display: block;
+        border-left: 5px solid #f9c;
+        font-size: 1.1em;
+    }
+    h4 {
+        font-size: 1.0em;
+    }
+    p {
+        padding: 10px 0;
+        font-size: 1.1em;
+    }
+    span {
+        font-size: 1.1em;
+    }
+
+/* Common Class */
+    .center {
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+/* Container */
+    #container {
+        background: #fff;
+        width: 750px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-top: 10px;
+        border-left: 2px solid #eefbff;
+        border-right: 2px solid #eefbff;
+    }
+
+/* Header */
+    #header {
+        height: 53px;
+    }
+    #header #login {
+        text-align: right;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 20px;
+    }
+    
+/* Main */
+    #main {
+        padding: 20px;
+        min-height: 300px;
+        _height:300px;
+    }
+
+/* table */
+    table {
+        margin: 20px;
+    }
+    table tr#product{
+        text-align: center;
+    }
+    
+/* Message */
+    .messageNotice {
+        padding: 10px;
+        margin: 15px;
+        border: 2px solid #caf;
+        background: #eef;
+        color: #55c;
+    }
+    .messageError {
+        padding: 10px;
+        margin: 15px;
+        border: 2px solid #fac;
+        background: #fee;
+        color: #c14;
+    }
+
+/* Footer */
+    #footer {
+        border-top: 3px solid #303018;
+        margin: 0 10px;
+        padding: 10px 0 50px;
+        font-size: 0.85em;
+    }

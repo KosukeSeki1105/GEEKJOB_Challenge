@@ -148,10 +148,10 @@ public class InsertProductServlet extends HttpServlet {
          * 商品登録処理
          */
         try{
-            // 登録済みデータがないか検索
+            // 登録済みの商品名があるか検索
             String[] searchResult = Select.getProductName( productName );
             
-            if( searchResult[0] != null ) {  // 登録済みのデータあり
+            if( searchResult[0] != null ) {  // 登録済みの商品名あり
                 message += "既にその商品名は登録済みです。";
                 request.setAttribute( "message", message );
                 request.getRequestDispatcher( "/register_product.jsp" ).forward( request, response );  // 商品登録ページに遷移
@@ -163,7 +163,7 @@ public class InsertProductServlet extends HttpServlet {
                 // 処理完了メッセージ
                 String processMsg = "商品の新規登録が完了しました。<br>";
                 request.setAttribute( "processMsg", processMsg );
-                request.getRequestDispatcher( "/manegement_option.jsp" ).forward( request, response ); // 管理選択ページに遷移
+                request.getRequestDispatcher( "/manegement_option.jsp" ).forward( request, response );  // 管理選択ページに遷移
             }
             
         } catch( ArrayIndexOutOfBoundsException | SQLException e ) {

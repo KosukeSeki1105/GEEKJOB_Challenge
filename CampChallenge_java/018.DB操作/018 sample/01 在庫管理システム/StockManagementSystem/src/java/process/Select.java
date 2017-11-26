@@ -28,11 +28,10 @@ public class Select {
     /**
      * 商品名取得
      * @param productName 
-     * @return ArrayList
+     * @return 商品名
      * @throws ArrayIndexOutOfBoundsException
      * @throws SQLException
      * @throws Exception
-
      */
     public static final String[] getProductName( String productName ) throws ArrayIndexOutOfBoundsException, SQLException, Exception {
         
@@ -46,8 +45,13 @@ public class Select {
         con = JDBCInfo.getConnection();
         
         try {
+            // SQL文
+            String sql = "SELECT ProductName FROM Products";
+            sql += " WHERE productName = ?";
+            
             // 商品名を検索
-            ps = con.prepareStatement( "SELECT ProductName FROM Products" );
+            ps = con.prepareStatement( sql );
+            ps.setString( 1, productName );
             rs = ps.executeQuery();
             
             // 検索データ格納
@@ -74,7 +78,7 @@ public class Select {
     
     /**
      * 商品IDと商品名取得
-     * @return ArrayList
+     * @return 商品IDと商品名情報
      * @throws SQLException
      * @throws Exception
      */
@@ -90,8 +94,11 @@ public class Select {
         con = JDBCInfo.getConnection();
         
         try{
+            // SQL文
+            String sql = "SELECT ProductID, ProductName FROM Products";
+            
             // 商品IDと商品名を検索
-            ps = con.prepareStatement( "SELECT ProductID, ProductName FROM Products" );
+            ps = con.prepareStatement( sql );
             rs = ps.executeQuery();
             
             // 検索データ格納
@@ -122,7 +129,7 @@ public class Select {
     
     /**
      * 商品情報全てを取得
-     * @return ArrayList
+     * @return 全商品情報
      * @throws Exception
      */
     public static final ArrayList<ProductBean> getProductAll() throws Exception {
@@ -137,8 +144,11 @@ public class Select {
         con = JDBCInfo.getConnection();
         
         try {
+            // SQL文
+            String sql = "SELECT * FROM Products";
+            
             // 商品情報全てを検索
-            ps = con.prepareStatement( "SELECT * FROM Products" );
+            ps = con.prepareStatement( sql );
             rs = ps.executeQuery();
             
             // データ格納
@@ -169,6 +179,5 @@ public class Select {
         }
         
     }
-    
     
 }

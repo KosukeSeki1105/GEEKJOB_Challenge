@@ -6,12 +6,31 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>トップページ</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSSを使用 -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>在庫管理トップページ</title>
     </head>
     <body>
-        <div>在庫管理システム</div>
-        <a href="login.jsp">ログイン</a>
+        <div id="container">
+
+            <!-- ヘッダー -->
+            <div id="header">
+                <h1>在庫管理システム</h1>
+            </div>
+    
+            <!-- メインコンテンツ-->
+            <div id="main">    
+                <p>新規に商品情報を登録したり、登録した商品情報を閲覧できます。</p>
+                <p>&raquo;<a href="login.jsp">ログイン</a></p>
+            </div>
+    
+            <!-- フッター -->
+            <div id="footer">
+                &copy; StockManagementSystem 在庫管理システム
+            </div>
+
+        </div>
     </body>
 </html>

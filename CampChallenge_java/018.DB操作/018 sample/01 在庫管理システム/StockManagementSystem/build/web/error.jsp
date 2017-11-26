@@ -11,13 +11,36 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- CSSを使用 -->
+        <link rel="stylesheet" type="text/css" href="style.css">
         <title>エラーページ</title>
     </head>
     <body>
+        <div id="container">
         
-        <!--errorというプロパティ名のスコープに値がある場合-->
-        <c:if test="${not empty error}">
-            ${error}
-        </c:if>
+            <!-- ヘッダー -->
+            <div id="header">
+                <h1>在庫管理システム</h1>
+            </div>
+            
+            <!--エラーメッセージ-->
+            <!--errorというプロパティ名のスコープに値がある場合-->
+            <c:if test="${not empty error}">
+                <div class="messageError">
+                    ${error}
+                </div>
+            </c:if>
+        
+            <!--メインコンテンツ-->
+            <div id="main">
+                &raquo;<a href="/StockManagementSystem/">トップページ</a>
+            </div>
+            
+            <!-- フッター -->
+            <div id="footer">
+                &copy; StockManagementSystem 在庫管理システム
+            </div>    
+            
+        </div>
     </body>
 </html>
