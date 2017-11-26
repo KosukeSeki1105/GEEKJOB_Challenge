@@ -13,7 +13,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- CSSを使用 -->
         <link rel="stylesheet" type="text/css" href="style.css">
-        <title>ログインページ</title>
+        <!--アイコン設定-->
+        <link rel="icon" href="kuma.ico">
+        <title>在庫管理ログイン</title>
     </head>
     <body>
         <div id="container">

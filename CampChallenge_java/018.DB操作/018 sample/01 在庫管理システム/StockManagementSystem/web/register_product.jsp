@@ -14,7 +14,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- CSSを使用 -->
         <link rel="stylesheet" type="text/css" href="style.css">
-        <title>商品情報登録</title>
+        <!--アイコン設定-->
+        <link rel="icon" href="kuma.ico">
+        <title>商品情報登録・更新</title>
     </head>
     <body>
         <div id="container">

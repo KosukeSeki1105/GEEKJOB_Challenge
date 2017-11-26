@@ -13,6 +13,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- CSSを使用 -->
         <link rel="stylesheet" type="text/css" href="style.css">
+        <!--アイコン設定-->
+        <link rel="icon" href="kuma.ico">
         <title>エラーページ</title>
     </head>
     <body>
