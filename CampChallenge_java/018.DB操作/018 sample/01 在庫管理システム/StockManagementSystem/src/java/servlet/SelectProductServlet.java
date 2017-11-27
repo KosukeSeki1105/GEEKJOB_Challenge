@@ -44,8 +44,7 @@ public class SelectProductServlet extends HttpServlet {
         
         /**
          * パラメータ取得
-         * 
-         * productNameの場合：商品IDと商品名のみの取得
+         * productIDNameの場合：商品IDと商品名のみの取得
          * productAllの場合：商品情報全てを取得
          */
         String selectType = request.getParameter( "select" );
@@ -57,9 +56,9 @@ public class SelectProductServlet extends HttpServlet {
         if( selectType.equals( "productIDName") ) {
             try {
                 // 商品IDと商品名取得
-                ArrayList<ProductBean> productNames = Select.getProductIDName();
+                ArrayList<ProductBean> productsIDName = Select.getProductIDName();
                 
-                session.setAttribute( "productNames", productNames );  // 表示用に商品名情報を格納
+                session.setAttribute( "productsIDName", productsIDName );  // 表示用に商品名情報を格納
                 request.getRequestDispatcher( "/register_product.jsp" ).forward( request, response );  // 管理選択ページに遷移
                 return;
                 
@@ -76,9 +75,9 @@ public class SelectProductServlet extends HttpServlet {
         if( selectType.equals( "productAll" ) ) {
             try {
                 // 商品情報取得
-                ArrayList<ProductBean> bean = Select.getProductAll();
+                ArrayList<ProductBean> products = Select.getProductAll();
                 
-                request.setAttribute( "bean", bean );  // 表示用に商品情報を格納
+                request.setAttribute( "products", products );  // 表示用に商品情報を格納
                 request.getRequestDispatcher( "/show_products.jsp" ).forward( request, response );  // 商品一覧表示ページに遷移
                 
             } catch( SQLException e ) {

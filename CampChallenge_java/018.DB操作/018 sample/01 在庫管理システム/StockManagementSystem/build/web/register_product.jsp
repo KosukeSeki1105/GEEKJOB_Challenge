@@ -57,8 +57,8 @@
                     <input type="hidden" name="loginCheck" value="${loginCode}">
                     <p>商品名：
                         <select name="productID">
-                            <c:forEach var="productName" items="${productNames}" varStatus="status">
-                                <option value="${productName.productID}">${productName.productName}</option>
+                            <c:forEach var="product" items="${productsIDName}" varStatus="status">
+                                <option value="${product.productID}">${product.productName}</option>
                             </c:forEach>
                         </select><br>
                     単価：<input type="text" name="price" size="4" value="${priceU}">(円)<br>

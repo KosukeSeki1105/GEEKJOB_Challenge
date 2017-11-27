@@ -40,7 +40,7 @@
                         <th>在庫</th>
                         <th>最終更新日時</th>
                     </tr>
-                    <c:forEach var="product" items="${bean}" varStatus="status">
+                    <c:forEach var="product" items="${products}" varStatus="status">
                         <tr id="product">
                             <td>${product.productID}</td>
                             <td>${product.productName}</td>

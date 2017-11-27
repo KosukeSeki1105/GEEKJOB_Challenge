@@ -96,6 +96,7 @@ public class Select {
         try{
             // SQL文
             String sql = "SELECT ProductID, ProductName FROM Products";
+            sql += " ORDER BY ProductID";
             
             // 商品IDと商品名を検索
             ps = con.prepareStatement( sql );
