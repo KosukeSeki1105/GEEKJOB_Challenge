@@ -1,0 +1,70 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2017/11/27, 22:01:19
+    Author     : k-seki
+*/
+
+/* Common */
+    body {
+        background: #fff url(images/bg_main.jpg);
+        font-family: Verdana, sans-serif;
+        font-size: 0.9em;
+        color: #474339;
+        line-height: 200%;
+    }
+    h1 {
+        font-size: 1.3em;
+        border-bottom: 4px groove #ccf;
+    }
+    h1, h2, h3, h4 {
+        display: inline;
+        padding: 0 20px;
+    }
+    p {
+        padding: 10px 0;
+    }
+    a:hover {
+        color: #ff4c21;
+    }
+/* Container */
+    #container {
+        background: #fff;
+        width: 750px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-top: 10px;
+        border-left: 2px solid #eefbff;
+        border-right: 2px solid #eefbff;
+    }
+    #header a#linktop {
+        float: left;
+        display: block;
+        width: 265px;
+        height: 53px;
+    }
+    #header a#linktop span {
+        display: none;
+    }
+    body#top #header {
+        background: url(images/head_top.png) no-repeat scroll center top;
+        height: 98px;
+    }
+    
+/* Main */
+    #main{
+        padding: 20px;
+        min-height: 350px;
+        _height: 350px;
+    }
+    
+/* Footer */
+    #footer {
+        border-top: 3px solid #303018;
+        margin: 0 10px;
+        padding: 10px 0 50px;
+        font-size: 0.8em;
+    }
