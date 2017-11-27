@@ -28,7 +28,7 @@ public class Insert {
      * @throws SQLException
      * @throws Exception
      */
-    public static void insert( String productName, int price, int stock ) throws SQLException, Exception {
+    public static void insertProduct( String productName, int price, int stock ) throws SQLException, Exception {
        
         // エラーメッセージ
         String errorMessage = "予期しないエラーが発生しました。管理者にお問い合わせください。";

@@ -134,7 +134,7 @@ public class UpdateProductServlet extends HttpServlet {
          */
         try {
             // 情報更新処理
-            Update.update( productID, price, stock );
+            Update.updateProduct( productID, price, stock );
             
             // 処理完了メッセージ
             String processMsg = "商品の情報更新が完了しました。<br>";

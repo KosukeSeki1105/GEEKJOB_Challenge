@@ -53,7 +53,7 @@ public class SelectProductServlet extends HttpServlet {
         /**
          * 商品IDと商品名のみの取得
          */
-        if( selectType.equals( "productIDName") ) {
+        if( selectType.equals( "productIDName" ) ) {
             try {
                 // 商品IDと商品名取得
                 ArrayList<ProductBean> productsIDName = Select.getProductIDName();

@@ -28,7 +28,7 @@ public class Update {
      * @throws SQLException
      * @throws Exception
      */
-    public static final void update( int productID, int price, int stock) throws SQLException, Exception {
+    public static final void updateProduct( int productID, int price, int stock) throws SQLException, Exception {
         
         // エラーメッセージ
         String errorMessage = "予期しないエラーが発生しました。管理者にお問い合わせください。";

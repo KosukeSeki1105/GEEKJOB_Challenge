@@ -158,7 +158,7 @@ public class InsertProductServlet extends HttpServlet {
                 
             } else {    // 登録済みのデータなし
                 // 登録処理
-                Insert.insert(productName, price, stock );
+                Insert.insertProduct( productName, price, stock );
             
                 // 処理完了メッセージ
                 String processMsg = "商品の新規登録が完了しました。<br>";
