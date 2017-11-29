@@ -1,0 +1,44 @@
+﻿＜データベースの構成＞
+・まず、かごゆめ用のデータベース「kagoyume_db」を作成してください。
+　その上で、会員情報管理用テーブルと購入履歴テーブルを作成します。
+
+** テーブル名:user_t **
+会員情報管理テーブル。初回の登録や更新以外に、購入時には総購入金額が更新
+
+カラム名　　　          userID	　　　　　　　 name	　　  password	　 　　mail	　　address	　total	　　　　newDate	　　　deleteFlg
+論理名	　　　         ユーザID	　　　　　 　ユーザー名	　　 パスワード	　 メールアドレス　　 住所	総購入金額	登録日時　　  削除フラグ
+データ型　　　int(主キー,AUTO_INCREMENT)　　varchar(255)　　varchar(255)　　varchar(255)　　　text	　 int	　　　　Datetime　 　int(初期値0)
+
+
+** テーブル名:buy_t **
+購入管理テーブル。1度の購入につき購入する商品の個数分生成される
+
+カラム名　　　 　　　　　buyID	　　　　　　　  userID　　　　　itemCode	type　　　 buyDate
+論理名	       　　　　　購入ID	　　　　　　　ユーザーID　　　 商品コード　　 発送方法	　 購入日時
+データ型　　　 int(主キー,AUTO_INCREMENT)　　int(外部キー)　　varchar(255)　　　int　　　　Datetime
+
+
+
+
+１.かごゆめ用のデータベース「kagoyume_db」を作成。
+＜SQL文＞ 
+	（DB作成）
+	   mysql -h localhost -u root
+	　 CREATE DATABASE kagoyume_db;
+	　 GRANT ALL ON kagoyume_db .* TO 'SEKI'@'localhost';
+	　 exit;
+
+
+	（テーブル作成）
+	　 mysql -u SEKI -p
+	   (password)
+	　 USE kagoyume_db;
+
+	　 CREATE TABLE user_t(userID int NOT NULL PRIMARY KEY AUTO_INCREMENT, name varchar(255),
+	-> password varchar(255), mail varchar(255), address text, total int, newDate Datetime, deleteFlg int default 0);
+
+	　 CREATE TABLE buy_t(buyID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    　  -> userID int, itemCode varchar(255), type int, buyDate Datetime,
+        -> FOREIGN KEY(userID) REFERENCES user_t(userID)
+        -> ) engine=InnoDB;
+
