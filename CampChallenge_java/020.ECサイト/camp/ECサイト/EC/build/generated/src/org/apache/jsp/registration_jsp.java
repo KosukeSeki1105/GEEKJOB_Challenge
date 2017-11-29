@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import javax.servlet.http.HttpServlet;;
+import jums.UserDataDTO;
 
 public final class registration_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -42,6 +44,14 @@ public final class registration_jsp extends org.apache.jasper.runtime.HttpJspBas
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+
+    HttpSession hs = request.getSession();
+     
+
+      out.write("\n");
+      out.write("\n");
       out.write("<!--「いいえ」でregistrationconfirmから戻ってきた場合、値を保持して記入済みに-->\n");
       out.write("\n");
       out.write("\n");
@@ -55,7 +65,7 @@ public final class registration_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("        <h1>会員登録フォーム</h1>\n");
       out.write("        <form action=\"RegistrationConfirm\" method=\"POST\">            \n");
       out.write("        ユーザー名<br>\n");
-      out.write("        <input type=\"text\" name=\"userName\"><br><br>\n");
+      out.write("        <input type=\"text\" name=\"name\"><br><br>\n");
       out.write("        パスワード<br>\n");
       out.write("        <input type=\"text\" name=\"password\"><br><br>\n");
       out.write("        メールアドレス<br>\n");

@@ -5,6 +5,9 @@
  */
 package jums;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
+
 //JavaBeansの必要条件
 //publicで引数なしのコンストラクタ(初期化処理)を持つ
 //フィールドは隠匿されていること
@@ -18,11 +21,75 @@ package jums;
  * データベースからの格納、
  * 取り出しで取得されたデータを最初に格納する。
  * 
- *ユーザー情報を持ちまわるJavaBeans
- * データベースのカラムと型に対応させている(DTO)。
- * データの挿入、取り出しどちらにも便利.
- * @author guest1Day
+ * @author seki-k
  */
-public class UserDataDTO {
+
+//シリアライズ可能に
+public class UserDataDTO implements Serializable{
     
+    //publicで引数なしのコンストラクタ
+    public UserDataDTO(){};
+    
+    //フィールド作成
+    private int userID        = 0;
+    private String name       = "";
+    private String password   = "";
+    private String mail       = "";
+    private String address    = "";
+    private int total         = 0;
+    private Timestamp newDate = null;
+    private int deleteFlg     = 0;
+    
+    //UserDataに格納されたユーザー情報をUserDataに格納
+    //ID
+    //name
+    //password
+    //mail
+    //address
+    //total
+    //newDate
+    public void setUserID(int userID){
+        this.userID = userID;
+    }    
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setPassword(String password){
+        this.password = password;
+    }
+    public void setMail(String mail){
+        this.mail = mail;
+    }
+    public void setAddress(String address){
+        this.address = address;
+    }
+    public void setTotal(int total){
+        this.total = total;
+    }
+    public void setNewDate(Timestamp newDate){
+        this.newDate = newDate;
+    }
+    
+    public int getUserID(){
+        return userID;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public String getMail(){
+        return mail;
+    }
+    public String getAddress(){
+        return address;
+    }   
+    public int getTotal(){
+        return total;
+    }
+    public Timestamp getNewDate(){
+        return newDate;
+    }
 }
+

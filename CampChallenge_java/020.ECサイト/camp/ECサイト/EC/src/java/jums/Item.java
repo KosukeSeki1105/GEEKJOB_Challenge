@@ -32,7 +32,7 @@ public class Item extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             //API使用
-            
+
             request.getRequestDispatcher("/item.jsp").forward(request, response);
         }
     }

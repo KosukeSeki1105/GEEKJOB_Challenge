@@ -68,6 +68,10 @@
         <servlet-name>MyDeleteResult</servlet-name>
         <servlet-class>jums.MyDeleteResult</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginResult</servlet-name>
+        <servlet-class>jums.LoginResult</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>search</servlet-name>
         <url-pattern>/search</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>MyDeleteResult</servlet-name>
         <url-pattern>/MyDeleteResult</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginResult</servlet-name>
+        <url-pattern>/LoginResult</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

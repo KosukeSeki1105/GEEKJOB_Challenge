@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import javax.servlet.http.HttpSession;
+import jums.UserData;
+import jums.JumsHelper;
 
 public final class top_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,6 +47,16 @@ public final class top_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+    
+    HttpSession hs = request.getSession();
+    hs.setAttribute("pageCheck", "top.jsp");
+    String loginState = (String)hs.getAttribute("loginState");
+    UserData userSearch = (UserData)hs.getAttribute("userSearch");
+    JumsHelper jh = JumsHelper.getInstance();
+
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -51,16 +64,41 @@ public final class top_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>トップページ</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h10>かごゆめ</h10><br><br>\n");
+      out.write("        ");
+if(loginState != null){ 
+      out.write("\n");
+      out.write("            ようこそ<a href=\"MyData\">");
+      out.print( userSearch.getName());
+      out.write("</a>さん！                        \n");
+      out.write("        ");
+ }
+      out.write("\n");
+      out.write("        <h1>かごゆめ</h1>\n");
       out.write("        『金銭取引が絶対に発生しない』<br>\n");
       out.write("        『いくらでも、どんなものでも購入できる(気分になれる)』<br>\n");
       out.write("        『ECサイト』<br><br>\n");
       out.write("        \n");
-      out.write("        <form action=\"Search\" method=\"GET\">\n");
-      out.write("            <input type=\"text\" name=\"search\">\n");
-      out.write("            <input type=\"submit\" name=\"submit\" value=\"検索\">\n");
-      out.write("            \n");
+      out.write("        <form action=\"search.jsp\" method=\"GET\">\n");
+      out.write("            <input type=\"text\" name=\"search\">            \n");
+      out.write("            <input type=\"submit\" name=\"submit\" value=\"検索\"><br><br>            \n");
       out.write("        </form>\n");
+      out.write("        ");
+if(loginState != null){ 
+      out.write("\n");
+      out.write("            ");
+      out.print( jh.cart());
+      out.write("<br><br>\n");
+      out.write("            ");
+      out.print( jh.logout());
+      out.write("<br>            \n");
+      out.write("        ");
+ }else{ 
+      out.write("\n");
+      out.write("            ");
+      out.print( jh.login());
+      out.write("\n");
+      out.write("        ");
+ }
       out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");

@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import javax.servlet.http.HttpSession;
+import jums.UserData;
 import jums.JumsHelper;
 
 public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -45,7 +47,21 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("<!--YahooショッピングAPIに直接検索キーワードを渡し、その結果を受け取り＆表示している。\n");
+      out.write("\n");
+      out.write("・検索キーワード、検索結果数を表示。\n");
+      out.write("\n");
+      out.write("・縦のリスト型に表示。サムネイルと、その横に商品名、金額が載っている。\n");
+      out.write("　クリックでitemへ。\n");
+      out.write("\n");
+      out.write("・結果は上位10件まで。-->\n");
+      out.write("\n");
+      out.write("\n");
 
+    HttpSession hs = request.getSession();
+    hs.setAttribute("pageCheck", "search.jsp");
+    String loginState = (String)hs.getAttribute("loginState");
+    UserData userSearch = (UserData)hs.getAttribute("userSearch");
     JumsHelper jh = JumsHelper.getInstance();
 
       out.write("\n");
@@ -58,10 +74,33 @@ public final class search_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>結果一覧</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>ここに結果が表示されます。</h1>\n");
-      out.write("        \n");
       out.write("        ");
+if(loginState != null){ 
+      out.write("\n");
+      out.write("            ようこそ<a href=\"mydata.jsp\">");
+      out.print( userSearch.getName());
+      out.write("</a>さん！                        \n");
+      out.write("        ");
+ }
+      out.write("\n");
+      out.write("        <h1>ここに結果が表示されます。</h1>\n");
+      out.write("        ");
+if(loginState != null){ 
+      out.write("\n");
+      out.write("            ");
+      out.print( jh.cart());
+      out.write("<br><br>\n");
+      out.write("            ");
+      out.print( jh.logout());
+      out.write("<br>            \n");
+      out.write("        ");
+ }else{ 
+      out.write("\n");
+      out.write("            ");
       out.print( jh.login());
+      out.write("\n");
+      out.write("        ");
+ }
       out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");

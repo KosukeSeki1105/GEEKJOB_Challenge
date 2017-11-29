@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,27 +30,17 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            //ログインしているかどうで処理を分岐
-            
-            //ログインしていない場合
-            //ユーザー名とパスワードを入力するフォームを表示
-            //「新規会員登録」というリンクも表示
-            
-            //ログイン成功の場合
-            //その情報をログイン状態を管理できるセッションに書き込む
-            //そして、そのまま直前まで閲覧していたページに遷移
-            
+        response.setContentType("text/html;charset=UTF-8");        
+        
             //ログインしている状態で(各ページの「ログアウト」というリンクから)遷移してきた場合
             //ログアウト処理を行う(セッションの破棄、クッキーに保存されたセッションIDを破棄)
             //その後topへ
+            HttpSession session = request.getSession();
+            session.invalidate();
+            System.out.println("session invalidated!!");
+            request.getRequestDispatcher("top.jsp").forward(request, response);
             
-            //ユーザーデータの削除フラグが1の場合は削除されたユーザーとして処理
-
-
-            
-        }
+            //クッキーに保存されたセッションIDを破棄する処理は余力があれば。
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

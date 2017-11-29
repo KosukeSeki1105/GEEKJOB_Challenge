@@ -1,26 +1,116 @@
 ﻿＜registration（会員登録 - 入力画面）＞
 ・loginからのみ遷移。
 
+
+
 ・フォームがあり、入力するのは以下の要素。
 	ユーザー名
 	パスワード
 	メールアドレス
 	住所
+　【jsp】
+　各フォームの作成。
+
+
 
 ・registration_confirmから戻ってきた場合は、値を保持して記入済みにできる。
+　【サーブレット】
+　UserDataに入力フォーム情報を格納し、それをセッションに格納。
+　【jsp】
+　セッションがnullでなければ、UserDataに格納した入力フォーム情報情報を初期値として表示。
+
+
+未実装（非機能要件）
+新規登録する際に、ユーザー名とパスワードが同じでも登録できてしまう。
+直したい。
+
 
 
 
 ＜registrationconfirm（会員登録 - 確認画面）＞
 ・フォームで入力された文字や選択を表示し、「上記の内容で登録いたします。よろしいですか？」と表示。
-　「はい」でregistration_complete「いいえ」でregistrationに値を保持したまま(戻った時にフォーム入力済みになっている)遷移。
-　もし入力が不足していた場合はどの項目のデータが不足しているのかを表示。insertに値を保持したまま遷移するリンクを表示。
+　【jsp】
+　「上記の内容で登録いたします。よろしいですか？」を表示。
+
+
+
+・「はい」でregistration_complete「いいえ」でregistrationに値を保持したまま(戻った時にフォーム入力済みになっている)遷移。
+　「はい」　→ registrationcomplete参照。
+　「いいえ」→ registration参照。
+
+
+
+・もし入力が不足していた場合はどの項目のデータが不足しているのかを表示。insertに値を保持したまま遷移するリンクを表示。
+　【RegistrationConfirm.java】
+　１.配列を作成。
+  ２.もし、入力フォームにデータが入力されていない場合は、入力されていないフォーム名を配列に格納。
+　３.配列に格納したものをセッションに格納。
+　【registrationconfirm.jsp】
+　配列の要素数が０でない場合に、未入力の部分はどこなのかを表示。
+　registration.jspにページ遷移するURLを表示。
+
+
+
+（非機能要件）
+・フォームに入力されたユーザー名・パスワード・メールアドレスが既に使用されていた
+　場合は、項目名とともに画面に表示する。
+　【UserDataDAO】
+　既に使用されているユーザー名・パスワード・メールアドレスがあるかどうかの
+　検索処理を行い、該当するデータを連想配列で返すconfirmメソッドを作成。　
+　【RegistrationConfirm.java】
+　confirmメソッドで返却された連想配列をセッションに格納。
+
+　【RegistrationConfirm.jsp】
+　１.if(連想配列の要素数が０でない)
+　２.項目名およびフォームで入力された文字を出力する処理
+　２-１.if(キー［name］がnullでない場合)　
+　２-２.if(キー[password]がnullでない場合)
+　２-３.if(キー[mail]がnullでない場合)
+
+
+
+
 
 
 
 ＜registrationcomplete（会員登録 - 完了画面）＞
 ・プロフィール用のDBに値を挿入。この際、現在時(年月日時分)を組み込み関数で取得し、追加。
+　【DBManager.java】
+　DBの接続処理を一任。
+
+
+　【UserDataDAO.java】
+　insertメソッド作成
+
+
+　【UserDataDTO.java】
+　registrationcomplete.jspでリクエストパラメータに格納した"registComp"を取得するために、
+　getterを作成。
+
+
+　【RegistrationComplete.java】
+　１.セッションに格納した(UserData)"registration"の情報を取得
+　２.DBにデータを挿入(UserDataDAO)
+　３.DBに挿入したデータをUserDataDTOに格納
+　４.セッション破棄
+　５.結果画面での表示用に入力パラメータをリクエストパラメータとして保存
+　６.registrationcomplete.jspに遷移
+
+
 
 ・「以上の内容で登録しました。」とregistration_confirmのようにフォームで入力された値を表示。
+　【jsp】
+　registrationconfirm.jspと同じような記述。
 
+
+　
 ・「トップページへ戻る」のリンクが、目立つ場所に設置されている。
+　【JumsHelper.java】
+　トップページへのリンクを定数として設定し、トップページ画面へのリンクを返却するメソッドを作成。
+　【registrationcomplete.jsp】
+　メソッド利用して「トップページへ戻る」ボタンを作成。
+
+
+
+
+

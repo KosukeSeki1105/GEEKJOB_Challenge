@@ -1,0 +1,16 @@
+SMAP
+mydata_jsp.java
+JSP
+*S JSP
+*F
++ 0 mydata.jsp
+mydata.jsp
+*L
+5,4:48
+12,5:52
+16,21:57
+37,6:78,3
+43,2:96
+45,3:98,3
+48,3:107
+*E

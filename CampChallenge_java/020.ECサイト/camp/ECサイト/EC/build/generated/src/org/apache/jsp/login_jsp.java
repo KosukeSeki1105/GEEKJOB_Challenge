@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import jums.JumsHelper;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -44,6 +47,14 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+
+    HttpSession hs                    = request.getSession();
+    HashMap<String, String> loginNull = (HashMap<String, String>)hs.getAttribute("loginNull");
+    JumsHelper jh                     = JumsHelper.getInstance();
+
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -52,6 +63,25 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <h1>ログインページ</h1>\n");
+      out.write("        <form action=\"LoginResult\" method=\"POST\">\n");
+      out.write("        ユーザー名<br>\n");
+      out.write("        <input type=\"text\" name=\"name\" value=");
+if(loginNull != null){ 
+      out.print( loginNull.get("name"));
+ }
+      out.write("><br><br>\n");
+      out.write("        パスワード<br>\n");
+      out.write("        <input type=\"text\" name=\"password\" value=");
+if(loginNull != null){ 
+      out.print( loginNull.get("password"));
+ }
+      out.write("><br><br>\n");
+      out.write("        <input type=\"submit\" name=\"submit\" value=\"ログイン\"><br><br>\n");
+      out.write("        </form>\n");
+      out.write("        <br>");
+      out.print( jh.registration());
+      out.write("\n");
+      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author guest1Day
+ * @author seki-k
  */
 public class MyDelete extends HttpServlet {
 

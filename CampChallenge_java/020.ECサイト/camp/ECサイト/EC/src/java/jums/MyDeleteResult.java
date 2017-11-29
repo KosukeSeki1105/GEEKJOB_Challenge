@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,12 +31,23 @@ public class MyDeleteResult extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            //ここにアクセスした段階で、IDによる削除が実行される。
-            //(外部キー制約により直接DELETEは出来ないので、削除フラグを0から1に変更する)
-            
-            request.getRequestDispatcher("/mydeleteresult.jsp").forward(request, response);
+        
+        //セッションスタート
+        HttpSession session = request.getSession();
+        UserData userDetail = (UserData)session.getAttribute("userDetail");
+       
+        //deleteFlgを０から１にするメソッドを使用
+        //セッションを全て破棄
+        try{
+            UserDataDAO.getInstance().delete(userDetail);
+            session.invalidate();
+        }catch(Exception e){
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
+        
+        
+            request.getRequestDispatcher("/mydeleteresult.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

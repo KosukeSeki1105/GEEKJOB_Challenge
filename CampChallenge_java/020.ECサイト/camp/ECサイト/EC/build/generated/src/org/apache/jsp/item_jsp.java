@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import javax.servlet.http.HttpSession;
+import jums.UserData;
 import jums.JumsHelper;
 
 public final class item_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -42,10 +44,13 @@ public final class item_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
+      out.write('\n');
+      out.write('\n');
 
+    HttpSession hs = request.getSession();
+    hs.setAttribute("pageCheck", "item.jsp");
+    String loginState = (String)hs.getAttribute("loginState");
+    UserData userSearch = (UserData)hs.getAttribute("userSearch");
     JumsHelper jh = JumsHelper.getInstance();
 
       out.write("\n");
@@ -58,10 +63,34 @@ public final class item_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>商品詳細ページ</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("        ");
+if(loginState != null){ 
+      out.write("\n");
+      out.write("            ようこそ<a href=\"mydata.jsp\">");
+      out.print( userSearch.getName());
+      out.write("</a>さん！\n");
+      out.write("        ");
+ }
+      out.write("\n");
       out.write("        <h1>ここに商品詳細が表示されます。</h1>\n");
       out.write("        <!--「カートに追加する」ボタンがあり、クリックするとaddに遷移する。-->\n");
       out.write("        ");
+if(loginState != null){ 
+      out.write("\n");
+      out.write("            ");
+      out.print( jh.cart());
+      out.write("<br><br>\n");
+      out.write("            ");
+      out.print( jh.logout());
+      out.write("<br>            \n");
+      out.write("        ");
+ }else{ 
+      out.write("\n");
+      out.write("            ");
       out.print( jh.login());
+      out.write("\n");
+      out.write("        ");
+ }
       out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");

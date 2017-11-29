@@ -11,6 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 /**
  *
@@ -30,12 +33,75 @@ public class MyUpdateResult extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            //IDなどを受け取り、DBを更新。
-            //「以上の内容で更新しました。」と、フォームで入力された値を表示。
-            
+        
+        //セッションスタート
+        HttpSession session = request.getSession();
+        
+        //文字コードをUTF-8に変更
+        request.setCharacterEncoding("UTF-8");
+        
+        //入力フォームからデータを取得し、String型に格納
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+        String mail = request.getParameter("mail");
+        String address = request.getParameter("address");
+       
+        
+        //未入力項目名が格納できる配列(ArrayList)を作成
+        //if(ユーザー名が未入力の場合)
+        //if(パスワードが未入力の場合)
+        //if(メールアドレスが未入力の場合)
+        //if(住所が未入力の場合)
+        //上記制御文でtrueなら、配列に項目名を格納
+        //セッションに配列を格納
+        //if(配列の要素数が０でない場合)  ＊未入力項目がある場合
+        //myupdateresult.jspに遷移
+        ArrayList<String> nullData = new ArrayList<String>();
+        if(name.equals(""))    { nullData.add("ユーザー名"); }
+        if(password.equals("")){ nullData.add("パスワード"); }
+        if(mail.equals(""))    { nullData.add("メールアドレス"); }
+        if(address.equals("")) { nullData.add("住所"); }
+        session.setAttribute("nullData", nullData);
+        if(nullData.size() != 0){
+            System.out.println("OK");
             request.getRequestDispatcher("/myupdateresult.jsp").forward(request, response);
         }
+        
+        
+        //UserDataと連携。フォームからの入出力されるデータを格納。
+        UserData userDetail = (UserData)session.getAttribute("userDetail");
+        UserData update = new UserData();
+        update.setUserID(userDetail.getUserID());
+        update.setName(name);
+        update.setPassword(password);
+        update.setMail(mail);
+        update.setAddress(address);
+
+        
+        //既に使われているユーザー名・パスワード・メールアドレスでないかどうかを確認する処理
+        //DAOのconfirmメソッドを使用
+        //セッションにHashMapデータを格納
+        //入力画面に遷移した際に、フォームが入力済みになっているようにセッションに入力情報を格納
+        //if(HashMapの要素数が０でない場合)  ＊既に使用しているデータあり
+        //myupdateresult.jspに遷移
+        //else(HashMapの要素数が０の場合)　　＊既に使われているデータなし
+        //DAOのupdateメソッドを使用
+        //myupdateresult.jspに遷移
+        try{
+            HashMap<String, String> confirm = UserDataDAO.getInstance().confirm(update);
+            session.setAttribute("updateresult", confirm);
+            session.setAttribute("userDetail", update);
+            if(confirm.size() != 0){
+                request.getRequestDispatcher("/myupdateresult.jsp").forward(request, response);
+            }else{
+                UserDataDAO.getInstance().update(update);
+                request.getRequestDispatcher("/myupdateresult.jsp").forward(request, response);                
+            }
+        }catch(Exception e){
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+        }        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

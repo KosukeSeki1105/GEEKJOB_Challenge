@@ -11,10 +11,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author guest1Day
+ * @author seki-k
  */
 public class MyData extends HttpServlet {
 
@@ -29,14 +30,34 @@ public class MyData extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            //登録したユーザー情報が閲覧できる。(ユーザーID以外全て)
-            //購入履歴へのリンクあり。
-            //登録情報を更新する、削除するリンクあり。
-            
+        response.setContentType("text/html;charset=UTF-8");        
+        try{
+            //セッション("userSearch")に保存したユーザー情報を取得
+            HttpSession session = request.getSession();
+            UserData ud         = (UserData)session.getAttribute("userSearch");
+        
+            //UserDataDAOのメソッド利用。userID,deleteFlg以外の情報すべてをuser_tテーブルから取得。
+            //戻り値はUserDataDTO。
+            UserDataDTO userDetail = UserDataDAO.getInstance().searchDetail(ud);
+        
+            //UserDataDTOからUserDataに変換するメソッドを実行
+            //UserDataに変換後、各情報を取り出し、セッションに格納
+            UserData userDetailUd = new UserData();
+            userDetailUd.getUserID(userDetail.getUserID());
+            userDetailUd.getName(userDetail.getName());
+            userDetailUd.getPassword(userDetail.getPassword());
+            userDetailUd.getMail(userDetail.getMail());
+            userDetailUd.getAddress(userDetail.getAddress());
+            userDetailUd.getTotal(userDetail.getTotal());
+            userDetailUd.getNewDate(userDetail.getNewDate());         
+            session.setAttribute("userDetail", userDetailUd);
+
             request.getRequestDispatcher("/mydata.jsp").forward(request, response);
+        }catch(Exception e){
+            request.setAttribute("error", e.getMessage());
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import jums.JumsHelper;
 
 public final class cart_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -46,6 +48,21 @@ public final class cart_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
 
+    //セッション("cart")の商品コード番号を取得
+    HttpSession hs = request.getSession();
+    String cart    = (String)hs.getAttribute("cart");
+    
+    //配列に商品コード番号を追加
+    //セッションに配列を追加
+    //表示のためにセッションから("cartTotal")を取得
+    ArrayList<String> al = new ArrayList<String>();
+    al.add(cart);
+    hs.setAttribute("cartTotal", cart);
+    ArrayList<String> cartTotal = (ArrayList<String>)hs.getAttribute("cartTotal");
+    
+    //セッション("cart")破棄
+    hs.removeAttribute("cart");
+    
     JumsHelper jh = JumsHelper.getInstance();
 
       out.write("\n");
@@ -57,11 +74,21 @@ public final class cart_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>カートページ</title>\n");
       out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <h1>Hello World!</h1>\n");
+      out.write("    <body>        \n");
+      out.write("        <h1>カートの中身</h1>\n");
       out.write("        ");
-      out.print( jh.login());
+ for(String value:cartTotal){ 
       out.write("\n");
+      out.write("        ");
+      out.print( value);
+      out.write("<br>\n");
+      out.write("        ");
+ }
+      out.write("        \n");
+      out.write("        <br><br>");
+      out.print( jh.top());
+      out.write("\n");
+      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

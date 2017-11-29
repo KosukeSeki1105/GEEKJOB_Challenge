@@ -1,0 +1,138 @@
+﻿＜mydata（会員情報 - 閲覧画面）＞
+・登録したユーザー情報が閲覧できる。(ユーザーID以外全て)
+　【MyData.java】
+　１.セッションに保存したUserData(userSearch)を取得
+　２.UserDataDAOのメソッドを利用してユーザーID,deleteFlg以外の情報すべてを
+　　 user_tテーブルから取得。戻り値はUserDataDTO。
+　３.UserDataDTOからUserDataに変換
+     UserDataに変換後、各情報を取り出しセッション("userDetail")に格納
+　４.mydata.jspに遷移
+
+　【mydata.jsp】
+　１.セッションに格納した情報("userDetail")を取り出す
+　２.テーブル表示に取り出す　
+
+
+
+・購入履歴へのリンクあり。
+　【mydata.jsp】
+　JumsHelperのインスタンス化とそのメソッド利用。
+
+
+
+・登録情報を更新する、削除するリンクあり。
+　【mydata.jsp】
+　JumsHelperのインスタンス化とそのメソッド利用。
+
+
+
+
+
+
+
+＜myhistory（会員情報 - 購入履歴）＞
+・これまで購入した商品の履歴が見れる。
+
+
+
+
+
+
+
+＜myupdate（会員情報 - 更新画面）＞
+・フォームから入力するデータで既にあるデータを更新できる。
+・画面構成はregistrationと同じ。フォーム内に直接記入された状態である。
+　このフォームの内容を書き換えていくことでデータの更新ができる。
+
+　１.セッション("userDetail")に格納した情報を取得。
+　２.ユーザー名・パスワード・メールアドレス・住所フォームを用意。
+　３.初期値は("userDetail")からそれぞれ情報取得
+
+
+
+・送信ボタン付き。
+　遷移先は【MyUpdateResult.java】
+
+
+
+
+
+
+
+＜myupdateresult（会員情報 - 更新完了画面）＞
+・IDなどを受け取り、DBを更新。
+・「以上の内容で更新しました。」と、フォームで入力された値を表示。
+
+　【MyUpdateResult.java】
+　１.入力されたデータを格納
+　２.ArrayListを使って未入力項目のチェック
+　３.入力されたデータをUserDataと連携
+　４.既に使われているユーザー名・パスワード・メールアドレスでないかのチェック
+　５．４でチェックが入らなかったら、DAOのupdateメソッドを利用して情報更新
+
+　【UserDataDAO】
+　updateメソッドを作成
+
+　【mydeleteresult.jsp】
+　１.if(未入力項目がある場合)
+     入力が不足していた場合はどの項目のデータが不足しているのかを表示。
+     loginに値を保持したまま遷移するリンクを表示。
+　２.else if(既に使用されているデータがある場合)
+     項目名およびフォームで入力された文字を出力
+     loginに値を保持したまま遷移するリンクを表示。
+　３.else
+　　 フォームの情報を出力。
+     以上の内容で更新しました。
+
+
+
+
+
+
+
+＜mydelete（会員情報 - 削除画面）＞
+・対象のレコードの全データを表示したのちに、「このユーザーをマジで削除しますか？」
+　という質問があり、「はい」と「いいえ」が直リンクとして設置してある。
+　「はい」ならmy_delete_resultへ、そうでないならトップページへ遷移する。
+　【mydelete.jsp】
+　１.mydata.jspと同じ表示にする。
+　２.「このユーザーをマジで削除しますか？」を表示。
+　３.「はい」「いいえ」のボタンを作成。
+　　　action先は、「はい」：MyDeleteResult
+　　　　　　　　　「いいえ」：top.jsp
+
+
+
+＜mydeleteresult（会員情報 - 削除完了画面）＞
+・ここにアクセスした段階で、IDによる削除が実行される。
+　(外部キー制約により直接DELETEは出来ないので、削除フラグを0から1に変更する)
+　【UserDataDAO】　
+　１.deleteFlgを０から１にするdeleteメソッドをDAOに記述
+　　　 （前略）
+	Connection con      = null;
+　	PrepatedStatement st =null;
+　	(中略) 
+　	st = con.prepareStatement("UPDATE user_t SET deleteFlg = ? WHERE userID = ?");
+	setInt(1, 1)
+　	serInt(2, UserDataメソッド利用)
+	st.executeUpdate();
+　２.ログインする際にdeleteFlgを参照する記述をsearchメソッドに追加
+
+　【MyDeleteResult.java】
+　１.DAOのdeleteメソッドを呼び出す
+　２.セッションを全て破棄
+
+
+
+・「削除しました」という一文が表示される。
+　【mydeleteresult.jsp】
+　「削除しました」を表示。
+
+
+
+
+
+
+
+
+
